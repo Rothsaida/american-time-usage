@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>American Time Usage</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet'
+          type='text/css'>
+
+    <!-- CSS libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!--First Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h1>American Time Usage</h1>
+                    <h2>In the Era of the COVID-19 Pandemic</h2>
+                    <img src="./images/ImagePlaceholder.png" alt="Image Placeholder">
+                </div>
+            </div>
+
+
+            <!-- graph -->
+            <div class="row justify-content-center" style="height: 60vh">
+                <div class="align-self-center" id="stacked-area-chart" style="height: 100%; width: 100%"></div>
+            </div>
+
+            <!-- brush -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center" id="timeline" style="height: 100%; width: 100%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Second Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h1>Job Losses</h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 75vh">
+                <div class="align-self-center"style="width: 100%"></div>
+                <div class="box">
+                    <div class="one">
+                        How many people in the US lost their jobs at the height of the pandemic? <br><br>
+                        <input type="text" id="GuessJobsLost" name="GuessJobsLost" placeholder="Type Your Guess Here"><br><br>
+                        <button>Submit</button>
+                    </div>
+                    <div class="two">
+                        <img src="./images/ImagePlaceholder.png" alt="Image Placeholder">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Third Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h1>Unemployment Rate</h1>
+                    <h2>Highest in Black and Brown Communities</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center" style="height: 75vh">
+                <div class="align-self-center"style="width: 100%">
+                    <div class="box">
+                        <div class="two-thirds">
+                            <div id="chart-area-disparities"></div>
+                        </div>
+                        <div class="one-third">
+                            What is the average US unemployment rate over this period of time? <br><br>
+                            <input type="text" id="GuessUSAvg" name="GuessUSAvg" placeholder="Type Your Guess Here"><br><br>
+                            <button>Submit</button>
+<!--                            On submit, dynamically draw a red line on the chart to the left to see how all of US compares to these racial breakdowns. Answer should pop up on the right-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Fourth Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh" id="headingTimeSource">
+                <div class="align-self-center">
+                    <h1><b>Work</b> is still the largest time source for people in 2020</h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 60vh">
+                <div class="align-self-center"style="width: 100%">
+                    Insert Visualization Here
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center" style="height: 100%; width: 100%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Fifth Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h1>Average Hours Worked per week</h1>
+                </div>
+            </div>
+            <div class="row justify-content-center" style="height: 60vh">
+                <div class="align-self-center"style="width: 100%">
+                    Insert Visualization Here
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center" style="height: 100%; width: 80%">
+                    As can be seen by the visualization above, the average number of hours worked are pretty consistent before and during the pandemic.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Sixth Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h2 class="headingTitle">How has time spent doing different activities changed before and during the pandemic?</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 75vh">
+                <div class="align-self-center"style="width: 100%">
+                    <div class="box">
+                        <div class="one">
+                            Insert Visualization Here
+                            <br>
+                            Increases
+                        </div>
+                        <div class="two">
+                            Insert Visualization Here
+                            <br>
+                            Decreases
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Seventh Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <form class="form-inLine">
+                        <div class=""form-check form-check-inline>
+                            <label for="chart-option"><h1>Top 5 Time Uses by</h1><select class="form-control" id="chart-option" onchange="updateFunction()"></select></label>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 75vh">
+                <div class="align-self-center"style="width: 100%">
+                    Insert Visualization Here
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Eighth Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <div class="row justify-content-center" style="height: 90vh">
+                <div class="align-self-center"style="height: 100%; width: 100%">
+                    <div class="box">
+                        <div class="one">
+                            <h1>Time Spent Alone</h1>
+                            <br>
+                            Insert Visualization Here
+                        </div>
+                        <div class="two">
+                            <h1>Time Spent in Sports and Leisure</h1>
+                            <br>
+                            Insert Visualization Here
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Ninth Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h1>Average Day for Americans in 2020</h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 75vh">
+                <div class="align-self-center"style="width: 100%">
+                    <div class="box">
+                        <div class="two-thirds">
+                            Insert Visualization Here
+                        </div>
+                        <div class="one-third">
+                            Insert Visualization Here
+                            Time Usage Overall (area chart)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Tenth Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center">
+                    <h1>Conclusions</h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 60vh">
+                <div class="align-self-center"style="height: 100%; width: 100%"></div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center" style="height: 100%; width: 100%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load JS libraries -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        crossorigin="anonymous"></script>
+<!-- d3 -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- Load data, create visualizations -->
+<script src="js/main.js"></script>
+<script src="js/racial-disparities.js"></script>
+</body>
+</html>

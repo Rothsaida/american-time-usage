@@ -1,0 +1,102 @@
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F0FFFF;
+  /*background-color: #FEFDEA;*/
+  text-align: center;
+}
+
+h1 {
+  font-weight: 100;
+  margin-top: 50px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.container-fluid {
+	padding-right: 30px;
+	padding-left: 30px;
+    /*background-color: #FAF7D5;*/
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.browser text {
+  text-anchor: end;
+}
+
+.area {
+  opacity: 0.7;
+  clip-path: url(#clip);
+}
+.area:hover {
+  opacity: 1;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.box {
+  display: flex;
+}
+
+.one {
+  flex: 0.5;
+  justify-content: center;
+  padding-top: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.two {
+  flex: 0.5;
+  padding-top: 25px;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.two-thirds {
+  flex: 0.75;
+  justify-content: center;
+  padding-top: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.one-third {
+  flex: 0.25;
+  justify-content: center;
+  padding-top: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#headingTimeSource {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.headingTitle {
+  font-size: x-large;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.flex-item {
+  justify-content: space-around;
+}
