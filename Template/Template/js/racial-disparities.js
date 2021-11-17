@@ -65,29 +65,9 @@ var YAxisGroup = svg.append("g")
 //     .curve(d3.curveLinear);
 
 
-
-// // Chart data
-// var chartOptions = [];
-// chartOptions["GOALS"] = "Goals";
-// chartOptions["AVERAGE_GOALS"] = "Average Goals";
-// chartOptions["MATCHES"] = "Matches";
-// chartOptions["TEAMS"] = "Teams";
-// chartOptions["AVERAGE_ATTENDANCE"] = "Average Attendance";
-//
-// // Select Box
-// for (var i in chartOptions) {
-//     d3.select("#chart-option").append("option")
-//         .attr("value", i)
-//         .text(chartOptions[i]);
-// }
-//
-// var selectedOption = "GOALS";
-
-
 // Initialize data
 loadData();
 
-// FIFA world cup
 let data;
 
 const timeParse = d3.timeParse("%Y-%m-%d");
@@ -95,11 +75,11 @@ const timeParse = d3.timeParse("%Y-%m-%d");
 function loadData() {
     d3.csv("data/racial-disparities.csv", row => {
         row.MONTH = timeParse(row.MONTH)        ;
-        row.BLACK = +row.BLACK;
-        row.HISPANIC = +row.HISPANIC;
-        row.US = +row.US;
-        row.ASIAN = +row.ASIAN;
-        row.WHITE = +row.WHITE;
+        row.BLACK = +row.BLACK/100.0;
+        row.HISPANIC = +row.HISPANIC/100.0;
+        row.US = +row.US/100.0;
+        row.ASIAN = +row.ASIAN/100.0;
+        row.WHITE = +row.WHITE/100.0;
         return row
     }).then(csv => {
 
@@ -128,7 +108,7 @@ function updateVisualization() {
     dateScale.domain([minDate, maxDate]);
 
     // y-axis
-    percentScale.domain([0, 1]);
+    percentScale.domain([0, 0.2]);
 
     // // update line graph!
     // linegraph.transition()
@@ -166,30 +146,185 @@ function updateVisualization() {
         .attr("transform", "translate(" + (width - padding - 350) + ", -10)")
         .call(yAxis);
 
+    // Black Demographic
     // Line function
-    var linegraph = svg.append("path")
+    var linegraphB = svg.append("path")
         .attr("class", "line");
 
-    console.log("Scale: " + data[0].BLACK);
-    console.log("Data cale: " + percentScale(data[0].BLACK));
-    console.log("Percent: " + formatDataPercent(data[0].BLACK));
-
-    console.log("Date: " + formatDate(data[0].MONTH));
-    var line = d3.line()
+    var lineBlack = d3.line()
         .x(d => {
-            if (isNaN(d)) {
-                console.log("NaN:" + d.MONTH);
-            }
-
-            console.log(formatDate(d.MONTH));
-            return formatDate(d.MONTH);})
+            return dateScale(d.MONTH);})
         .y(d => {
-            console.log(formatDataPercent(d.BLACK));
-            return formatDataPercent(d.BLACK);})
+            return percentScale(d.BLACK);})
         .curve(d3.curveLinear);
 
-    linegraph.attr("d", line(data))
-        .attr("stroke", "black");
+    linegraphB.attr("d", lineBlack(data))
+        .style("fill", "none")
+        .attr("stroke", "#191970")
+        .attr("transform", "translate(" + 20 + "," + -12 + ")");
+
+    // Hispanic Demographic
+    var linegraphH = svg.append("path")
+        .attr("class", "line");
+
+    console.log("Date: " + formatDate(data[0].MONTH));
+    var lineHispanic = d3.line()
+        .x(d => {
+            return dateScale(d.MONTH);})
+        .y(d => {
+            return percentScale(d.HISPANIC);})
+        .curve(d3.curveLinear);
+
+    linegraphH.attr("d", lineHispanic(data))
+        .style("fill", "none")
+        .attr("stroke", "#38678f")
+        .attr("transform", "translate(" + 20 + "," + -12 + ")");
+
+    // Asian Demographic
+    var linegraphA = svg.append("path")
+        .attr("class", "line");
+
+    console.log("Date: " + formatDate(data[0].MONTH));
+    var lineAsian = d3.line()
+        .x(d => {
+            return dateScale(d.MONTH);})
+        .y(d => {
+            return percentScale(d.ASIAN);})
+        .curve(d3.curveLinear);
+
+    linegraphA.attr("d", lineAsian(data))
+        .style("fill", "none")
+        .attr("stroke", "#568ebd")
+        .attr("transform", "translate(" + 20 + "," + -12 + ")");
+
+    // White Demographic
+    var linegraphW = svg.append("path")
+        .attr("class", "line");
+
+    console.log("Date: " + formatDate(data[0].MONTH));
+    var lineWhite = d3.line()
+        .x(d => {
+            return dateScale(d.MONTH);})
+        .y(d => {
+            return percentScale(d.WHITE);})
+        .curve(d3.curveLinear);
+
+    linegraphW.attr("d", lineWhite(data))
+        .style("fill", "none")
+        .attr("stroke", "#8ca9cf")
+        .attr("transform", "translate(" + 20 + "," + -12 + ")");
+
+    // Hispanic Demographic
+    var linegraphUS = svg.append("path")
+        .attr("class", "line");
+
+    console.log("Date: " + formatDate(data[0].MONTH));
+    var lineUS = d3.line()
+        .x(d => {
+            return dateScale(d.MONTH);})
+        .y(d => {
+            return percentScale(d.US);})
+        .curve(d3.curveLinear);
+
+    linegraphUS.attr("d", lineUS(data))
+        .style("fill", "none")
+        .attr("stroke", "red")
+        .attr("transform", "translate(" + 20 + "," + -12 + ")");
+
+    // Tooltip - All demographics
+    // create group element for line and text , focus display, none
+    // vertical line
+    let focus = svg.append("g")
+        .attr("class", "BlackTooltip")
+        .style("display", "none");
+
+    focus.append("line")
+        .attr("stroke", "black")
+        .attr("x1", 30)
+        .attr("y1", height)
+        .attr("x2", 30)
+        .attr("y2", 0);
+
+    focus.append("text")
+        .attr("class", "tool-date")
+        .attr("x", 10)
+        .attr("y", 10)
+        .text("tooltip date value");
+
+    focus.append("text")
+        .attr("class", "tool-BlackPercent")
+        .attr("x", 10)
+        .attr("y", 25)
+        .text("tooltip percent value");
+
+    focus.append("text")
+        .attr("class", "tool-HispanicPercent")
+        .attr("x", 10)
+        .attr("y", 40)
+        .text("tooltip percent value");
+
+    focus.append("text")
+        .attr("class", "tool-AsianPercent")
+        .attr("x", 10)
+        .attr("y", 55)
+        .text("tooltip percent value");
+
+    focus.append("text")
+        .attr("class", "tool-WhitePercent")
+        .attr("x", 10)
+        .attr("y", 70)
+        .text("tooltip percent value");
+
+    // has mouse movements
+    svg.append("rect")
+        .attr("width", width + 20)
+        .attr("height", height - padding - 10)
+        .attr("transform", "translate(" + 30 + ",0)")
+        .attr("class", "rectangleOverlay")
+        .attr("opacity", "0")
+        .on("mouseover", () => focus.style("display", null))
+        .on("mouseout", () => focus.style("display", "none"))
+        .on("mousemove", mousemove);
+
+    // define the mousemove function here
+
+    function mousemove(event) {
+
+        let bisectDate = d3.bisector(d=>d.MONTH).left;
+        const formatTime = d3.timeFormat("%B %Y");
+        const formatTool = d3.format(",.0f");
+
+        var x_pos = d3.pointer(event)[0];
+        console.log(x_pos);
+
+        var x_date = dateScale.invert(x_pos);
+        console.log(x_date);
+
+        let index = bisectDate(data, x_date);
+
+        console.log("Data: ", data);
+        let data_element = data[index]
+        //console.log("Element: ", data_element);
+
+        focus.attr("transform", "translate(" + x_pos + 20 + ",0)");
+
+
+        d3.select(".tool-date")
+            .text(formatTime(data_element.MONTH));
+
+        d3.select(".tool-BlackPercent")
+            .text("Black: " + data_element.BLACK);
+
+        d3.select(".tool-HispanicPercent")
+            .text("Hispanic: " + data_element.HISPANIC);
+
+        d3.select(".tool-AsianPercent")
+            .text("Asian: " + data_element.ASIAN);
+
+        d3.select(".tool-WhitePercent")
+            .text("White: " + data_element.WHITE);
+    }
+
 
 //     const area = d3.area()
 //         .x(d => dateScale(d.MONTH))
