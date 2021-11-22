@@ -43,7 +43,7 @@ constructor(parentElement, data) {
 	initVis(){
 		let vis = this;
 
-		vis.margin = {top: 90, right: 90, bottom: 30, left: 90};
+		vis.margin = {top: 30, right: 90, bottom: 30, left: 90};
 
 		vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
 		vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
@@ -164,5 +164,15 @@ constructor(parentElement, data) {
 		// Call axis functions with the new domain
 		vis.svg.select(".x-axis").call(vis.xAxis);
 		vis.svg.select(".y-axis").call(vis.yAxis);
+
+		vis.svg.append("text")
+			.attr("class", "y label")
+			.attr("text-anchor", "middle")
+			.attr("x", -vis.height/2)
+			.attr("y", -40)
+			.attr("dy", ".75em")
+			.attr("transform", "rotate(-90)")
+			.attr("font-size", "10px")
+			.text("Percentage of Time Spent on that Activity");
 	}
 }
