@@ -7,8 +7,18 @@ class LineChart {
 
 
         // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
-        console.log("AVG HOURS WORKED")
-        console.log(this.data)
+        //console.log("AVG HOURS WORKED")
+        //console.log(this.data)
+
+        let colors = ["#1b70fc", "#faff16", "#d50527", "#158940", "#f898fd", "#24c9d7",
+            "#cb9b64", "#866888", "#22e67a", "#e509ae", "#9dabfa", "#437e8a", "#b21bff",
+            "#ff7b91", "#94aa05", "#ac5906", "#82a68d", "#fe6616"]
+
+        this.colors = colors;
+
+        this.colorScale = d3.scaleOrdinal()
+            .domain([2003, 2020])
+            .range(colors);
 
         this.initVis()
     }
@@ -20,8 +30,7 @@ class LineChart {
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height  - vis.margin.top - vis.margin.bottom;
-        console.log(vis.width)
-        console.log(vis.height)
+
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
@@ -55,6 +64,8 @@ class LineChart {
         vis.svg.append("g")
             .attr("class", "y-axis axis");
 
+        vis.lines = vis.svg.append("path")
+
         // TO-DO: (Filter, aggregate, modify data)
         vis.wrangleData();
 
@@ -77,19 +88,7 @@ class LineChart {
     updateVis(){
         let vis = this;
 
-        vis.svg.append('g')
-            .selectAll("dot")
-            .data(vis.data)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d) {
-                console.log(vis.x(vis.percentileScale(d.FAMINCOME)));
-                return vis.x(vis.percentileScale(d.FAMINCOME)); } )
-            .attr("cy", function (d) {
-                console.log(vis.y(d.avgHours));
-                return vis.y(d.avgHours); } )
-            .attr("r", 1.5)
-            .style("fill", "#69b3a2")
+
 
         // Call axis functions with the new domain
         vis.svg.select(".x-axis").call(vis.xAxis);
@@ -111,6 +110,40 @@ class LineChart {
             .attr("transform", "rotate(-90)")
             .attr("font-size", "10px")
             .text("hours worked per week");
+
+        let grouped_data = d3.group(vis.data, d => d.YEAR);
+
+        console.log(grouped_data)
+
+        let myColor = d3.scaleOrdinal()
+            .domain(grouped_data.keys())
+            .range(vis.colors);
+
+        let line = d3.line()
+            .x(d => vis.x(vis.percentileScale(d.FAMINCOME)) )
+            .y(d => vis.y(d.avgHours) )
+            .curve(d3.curveLinear);
+
+        vis.svg.selectAll('.line')
+            .data(grouped_data)
+            .enter()
+            .append('path')
+            .attr('fill', 'none')
+            .attr('stroke', d => myColor(d[0]))
+            .attr('stroke-width', 0.5)
+            .attr('d', (d) => line(Array.from(d.values())[1]));
+
+        vis.svg.append('g')
+            .selectAll("dot")
+            .data(vis.data)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) {
+                return vis.x(vis.percentileScale(d.FAMINCOME)); } )
+            .attr("cy", function (d) {
+                return vis.y(d.avgHours); } )
+            .attr("r", 1.5)
+            .style("fill", d=> myColor(d.YEAR))
 
 
     }
