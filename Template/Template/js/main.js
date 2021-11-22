@@ -3,6 +3,7 @@
 
 // init global variables & switches
 let myStackedArea;
+let myBubbleChart;
 
 // load data using promises
 let promises = [
@@ -26,6 +27,7 @@ function initMainPage(dataArray) {
 
     // init table
     myStackedArea = new StackedAreaChart('stacked-area-chart', dataArray[0]);
+    myBubbleChart = new BubbleChart('bubble-chart', dataArray[0]);
 }
 
 
