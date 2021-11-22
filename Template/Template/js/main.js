@@ -9,7 +9,9 @@ let myAvgHoursWorked;
 // load data using promises
 let promises = [
     d3.json("data/topLevelPercentage2.json"),
-    d3.csv("data/fulltimeHoursworked.csv")
+    d3.csv("data/fulltimeHoursworked.csv"),
+    d3.csv("data/gendergrouping.csv"),
+    d3.csv("data/groupingbyrace.csv")
 ];
 
 Promise.all(promises)
