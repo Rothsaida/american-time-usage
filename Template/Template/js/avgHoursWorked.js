@@ -4,7 +4,6 @@ class LineChart {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
-        this.displayData = [];
 
 
         // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
@@ -14,20 +13,17 @@ class LineChart {
         this.initVis()
     }
 
-
-    /*
-     * Method that initializes the visualization (static content, e.g. SVG area or axes)
-     */
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 90, right: 90, bottom: 30, left: 90};
+        vis.margin = {top: 30, right: 10, bottom: 50, left: 20};
 
-        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
-
+        vis.width = 400 - vis.margin.left - vis.margin.right;
+        vis.height = 400 - vis.margin.top - vis.margin.bottom;
+        console.log(vis.width)
+        console.log(vis.height)
         // SVG drawing area
-        vis.svg = d3.select("#avg-hours-worked").append("svg")
+        vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
@@ -35,10 +31,12 @@ class LineChart {
 
         // Scales and axes
         vis.x = d3.scaleLinear()
-            .range([0, vis.width]);
+            .range([0, vis.width])
+            .domain([0, 17]);
 
         vis.y = d3.scaleLinear()
-            .range([vis.height, 0]);
+            .range([vis.height,0])
+            .domain([35,50]);
 
         vis.xAxis = d3.axisBottom()
             .scale(vis.x);
@@ -75,21 +73,19 @@ class LineChart {
     updateVis(){
         let vis = this;
 
-        // Update domain
-        // Get the maximum of the multi-dimensional array or in other words, get the highest peak of the uppermost layer
-        vis.x.domain([0,50]);
-        vis.y.domain([0,100]);
-
         vis.svg.append('g')
             .selectAll("dot")
             .data(vis.data)
             .enter()
             .append("circle")
-            .attr("cx", function (d) { return vis.x(d.FAMINCOME); } )
-            .attr("cy", function (d) { return vis.y(d.UHRSWORKT); } )
+            .attr("cx", function (d) {
+                console.log(vis.x(d.FAMINCOME));
+                return vis.x(d.FAMINCOME); } )
+            .attr("cy", function (d) {
+                console.log(vis.y(d.avgHours));
+                return vis.y(d.avgHours); } )
             .attr("r", 1.5)
             .style("fill", "#69b3a2")
-
 
         // Call axis functions with the new domain
         vis.svg.select(".x-axis").call(vis.xAxis);
