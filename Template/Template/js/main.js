@@ -4,6 +4,7 @@
 // init global variables & switches
 let myStackedArea;
 let myBubbleChart;
+let myAvgHoursWorked;
 
 // load data using promises
 let promises = [
