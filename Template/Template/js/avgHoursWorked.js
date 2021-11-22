@@ -66,6 +66,10 @@ class LineChart {
 
         vis.lines = vis.svg.append("path")
 
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'dotTooltip')
+
         // TO-DO: (Filter, aggregate, modify data)
         vis.wrangleData();
 
@@ -144,6 +148,35 @@ class LineChart {
                 return vis.y(d.avgHours); } )
             .attr("r", 1.5)
             .style("fill", d=> myColor(d.YEAR))
+
+            .on("mouseover", function(e, d) {
+                // show selection of arc
+                d3.select(this)
+                    .attr('fill', 'black')
+
+                // display info with tooltip
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", e.pageX + 20 + "px")
+                    .style("top", e.pageY + "px")
+                    .html(`
+                         <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
+                             <p>Year: ${d.YEAR}</p>
+                             <p> Income Percentile: ${Number(vis.percentileScale(d.FAMINCOME)).toFixed(0)} out of 100</p>
+                             <p> Average Hours Worked: ${Number(d.avgHours).toFixed(0)}</p>                         
+                         </div>`);
+            })
+
+            .on('mouseout', function(e, d) {
+                d3.select(this)
+                    .attr("fill", d => myColor(2003))
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
+            })
 
 
     }
