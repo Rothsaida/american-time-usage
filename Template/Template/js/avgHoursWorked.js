@@ -27,7 +27,7 @@ class LineChart {
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
         // SVG drawing area
-        vis.svg = d3.select("#" + vis.parentElement).append("svg")
+        vis.svg = d3.select("#avg-hours-worked").append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
@@ -77,8 +77,18 @@ class LineChart {
 
         // Update domain
         // Get the maximum of the multi-dimensional array or in other words, get the highest peak of the uppermost layer
-        vis.x.domain(d3.extent(vis.data, d=> d.FAMINCOME));
-        vis.y.domain(d3.extent(vis.data, d=> d.UHRSWORKT));
+        vis.x.domain([0,50]);
+        vis.y.domain([0,100]);
+
+        vis.svg.append('g')
+            .selectAll("dot")
+            .data(vis.data)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) { return vis.x(d.FAMINCOME); } )
+            .attr("cy", function (d) { return vis.y(d.UHRSWORKT); } )
+            .attr("r", 1.5)
+            .style("fill", "#69b3a2")
 
 
         // Call axis functions with the new domain
