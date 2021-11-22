@@ -7,7 +7,8 @@ let myBubbleChart;
 
 // load data using promises
 let promises = [
-    d3.json("data/topLevelPercentage2.json")
+    d3.json("data/topLevelPercentage2.json"),
+    d3.csv("data/fulltimeHoursworked.csv")
 ];
 
 Promise.all(promises)
@@ -28,6 +29,7 @@ function initMainPage(dataArray) {
     // init table
     myStackedArea = new StackedAreaChart('stacked-area-chart', dataArray[0]);
     myBubbleChart = new BubbleChart('bubble-chart', dataArray[0]);
+    myAvgHoursWorked = new LineChart('avg-hours-worked', dataArray[1]);
 }
 
 
