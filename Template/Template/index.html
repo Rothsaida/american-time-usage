@@ -27,24 +27,30 @@
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
             <!-- header -->
-            <div class="row justify-content-center" style="height: 65vh">
+            <div class="row justify-content-center" style="height: 40vh">
                 <div class="align-self-center">
                     <h1>American Time Usage</h1>
                     <h2>in the Era of the COVID-19 Pandemic</h2>
-
+                    <hr>
                     <h6>
                         Each year, the Bureau of Labor Statistics surveys thousands of households for the
                         American Time Usage Survey, a project which tracks how Americans spend their time.
                         This data helps illuminate how our society affords access to work, to leisure, and beyond.
+                        We hope to analyze how time usage was affected by the 2020 COVID pandemic.
                     </h6>
+                    <hr>
                 </div>
             </div>
 
+            <!-- graph -->
+            <div class="row justify-content-center" style="height: 60vh">
+                <h5>Percentage Point Change in Time Usage from 2019 to 2020</h5>
+                <div class="align-self-center" id="change-bar-chart" style="height: 100%; width: 100%"></div>
 
-
+            </div>
 
             <!-- brush -->
-            <div class="row justify-content-center" style="height: 15vh">
+            <div class="row justify-content-center" style="height: 10vh">
                 <div class="align-self-center" id="timeline" style="height: 100%; width: 100%"></div>
             </div>
         </div>
@@ -52,6 +58,30 @@
 </div>
 
 <!--First Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 15vh" id="headingTimeSource">
+                <div class="align-self-center">
+                    <h1><b>Work</b> is still the largest time source for people in 2020</h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 60vh">
+                <div class="align-self-center" id="bubble-chart" style="width: 90%; height: 90%"></div>
+            </div>
+
+            <div class="row justify-content-center" style="height: 15vh">
+                <div class="align-self-center" style="height: 100%; width: 100%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Second Page-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
@@ -79,7 +109,7 @@
     </div>
 </div>
 
-<!--Second Page-->
+<!--Third Page-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
@@ -110,7 +140,7 @@
     </div>
 </div>
 
-<!--Third Page-->
+<!--Fourth Page-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
@@ -139,30 +169,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-</div>
-
-<!--Fourth Page-->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
-            <!-- header -->
-            <div class="row justify-content-center" style="height: 15vh" id="headingTimeSource">
-                <div class="align-self-center">
-                    <h1><b>Work</b> is still the largest time source for people in 2020</h1>
-                </div>
-            </div>
-
-            <div class="row justify-content-center" style="height: 60vh">
-                <div class="align-self-center" id="bubble-chart" style="width: 90%; height: 90%"></div>
-            </div>
-
-            <div class="row justify-content-center" style="height: 15vh">
-                <div class="align-self-center" style="height: 100%; width: 100%"></div>
-            </div>
         </div>
     </div>
 </div>
@@ -349,6 +355,7 @@
 <script src="js/BubbleChart.js"></script>
 <script src="js/avgHoursWorked.js"></script>
 <script src="js/pieChart.js"></script>
+<script src="js/changeBar.js"></script>
 
 </body>
 </html>

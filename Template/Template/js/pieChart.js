@@ -59,7 +59,7 @@ class PieChart {
         vis.pie = d3.pie()
             .value(d => d.duration);
 
-        vis.outerRadius = vis.width / 2;
+        vis.outerRadius = vis.width / 4;
         vis.innerRadius = 0;
 
         vis.arc = d3.arc()

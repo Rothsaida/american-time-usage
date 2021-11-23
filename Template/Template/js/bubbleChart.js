@@ -45,7 +45,7 @@ class BubbleChart {
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
         vis.radius = d3.scaleLinear()
-            .range([0, vis.width/4]);
+            .range([0, vis.width/8]);
 
         vis.wrangleData();
     }
