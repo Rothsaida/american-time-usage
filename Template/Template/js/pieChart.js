@@ -125,7 +125,7 @@ class PieChart {
                     .html(`
                          <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
                              <h3>${vis.codeToActivity(d.data.activity)}<h3>
-                             <h4> Duration: ${d.data.duration.toFixed(2)} hours</h4>                       
+                             <h4> Duration: ${d.data.duration.toFixed(2)} mins</h4>                       
                          </div>`);
             })
 
