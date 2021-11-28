@@ -3,10 +3,20 @@
 
 // init global variables & switches
 let myStackedArea;
+let myBubbleChart;
+let myAvgHoursWorked;
+let myActivitiesByMale;
+let myActivitiesByFemale;
+let myChangeBar;
+
 
 // load data using promises
 let promises = [
-    d3.json("data/topLevelPercentage2.json")
+    d3.json("data/topLevelPercentage2.json"),
+    d3.csv("data/fulltimeHoursworked.csv"),
+    d3.csv("data/gendergrouping.csv"),
+    d3.csv("data/groupingbyrace.csv"),
+    d3.csv("data/change.csv")
 ];
 
 Promise.all(promises)
@@ -26,6 +36,11 @@ function initMainPage(dataArray) {
 
     // init table
     myStackedArea = new StackedAreaChart('stacked-area-chart', dataArray[0]);
+    myBubbleChart = new BubbleChart('bubble-chart', dataArray[0]);
+    myAvgHoursWorked = new LineChart('avg-hours-worked', dataArray[1]);
+    myActivitiesByMale = new PieChart('top-five-male', dataArray[2], ["SEX", "1", "Male"]);
+    myActivitiesByFemale = new PieChart('top-five-female', dataArray[2], ["SEX", "2", "Female"])
+    myChangeBar = new ChangeBarChart('change-bar-chart', dataArray[4])
 }
 
 
