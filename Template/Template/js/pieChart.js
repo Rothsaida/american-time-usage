@@ -79,16 +79,27 @@ class PieChart {
     wrangleData() {
         let vis = this;
 
+        vis.unfilteredDisplay = []
 
         vis.data.forEach(d => {
-            if(d[vis.category[0]] === vis.category[1]) {
-                vis.displayData.push({
+            if(d[vis.category[0]].startsWith(vis.category[1])) {
+                vis.unfilteredDisplay.push({
                     activity: d.activityTopLevel,
                     duration: +d.duration
                 })
             }
         })
-        console.log(vis.displayData);
+        console.log(vis.unfilteredDisplay);
+        if (vis.unfilteredDisplay.length > 18) {
+            // vis.unfilteredDisplay.forEach(d => {
+            //
+            // })
+            vis.unfilteredDisplay.reduce((prev, curr) => {
+
+            }, Object.create(null))
+        }
+
+
         vis.displayData.sort((a, b) => (a.duration > b.duration) ? -1 : 1)
         console.log(vis.displayData);
         vis.displayData = vis.displayData.slice(0,5);

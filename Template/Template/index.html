@@ -245,7 +245,13 @@
                 <div class="align-self-center">
                     <form class="form-inLine">
                         <div class=""form-check form-check-inline>
-                            <label for="chart-option"><h1>Top 5 Time Uses by</h1><select class="form-control" id="chart-option" onchange="updateFunction()"></select></label>
+                            <label for="chart-option">
+                                <h1>Top 5 Time Uses by</h1>
+                                <select class="form-control" id="chart-option" onchange="updateCategory()">
+                                    <option value="SEX" selected>Sex</option>
+                                    <option value="RACE">Race</option>
+                                </select>
+                            </label>
 
                         </div>
                     </form>
@@ -255,6 +261,11 @@
             <div class="row justify-content-center" style="height: 75vh">
                 <div class="align-self-center" id="top-five-male" style="width: 50%; height: 50%"></div>
                 <div class="align-self-center" id="top-five-female" style="width: 50%; height: 50%"></div>
+                <div class="align-self-center" id="top-five-white" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-black" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-native" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-asian" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-mixed" style="width: 50%; height: 25%"></div>
             </div>
         </div>
     </div>
@@ -347,6 +358,9 @@
         crossorigin="anonymous"></script>
 <!-- d3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
