@@ -17,10 +17,10 @@ class ChangeBarChart {
         let vis = this;
 
         vis.data.sort(function(b, a) {
-            return a.Change - b.Change;
+            return a.change - b.change;
         });
 
-        vis.margin = {top: 30, right: 150, bottom: 70, left: 170};
+        vis.margin = {top: 40, right: 150, bottom: 110, left: 170};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height  - vis.margin.top - vis.margin.bottom;
@@ -34,7 +34,7 @@ class ChangeBarChart {
 
         vis.x = d3.scaleBand()
             .range([ 0, vis.width ])
-            .domain(vis.data.map(function(d) { return d.Category; }))
+            .domain(vis.data.map(function(d) { return d.activityTopLevel; }))
             .padding(0.2);
 
         vis.svg.append("g")
@@ -46,7 +46,7 @@ class ChangeBarChart {
             .style("text-anchor", "end");
 
         vis.y = d3.scaleLinear()
-            .domain([-0.9, 1])
+            .domain([-50, 50])
             .range([ vis.height, 0]);
 
         vis.svg.append("g")
@@ -84,29 +84,29 @@ class ChangeBarChart {
             .data(vis.data)
             .enter()
             .append("rect")
-            .attr("x", function(d) { return vis.x(d.Category); })
+            .attr("x", function(d) { return vis.x(d.activityTopLevel); })
             .attr("y", function(d) {
-                if(d.Change >= 0) {
-                    return vis.y(d.Change);
+                if(d.change >= 0) {
+                    return vis.y(d.change);
                 }
-                if(d.Change < 0) {
+                if(d.change < 0) {
                     return baseline;
                 }
             })
             .attr("width", vis.x.bandwidth())
             .attr("height", function(d) {
-                if(d.Change >= 0) {
-                    return baseline - vis.y(d.Change);
+                if(d.change >= 0) {
+                    return baseline - vis.y(d.change);
                 }
-                if(d.Change < 0) {
-                    return (vis.y(d.Change) - baseline);
+                if(d.change < 0) {
+                    return (vis.y(d.change) - baseline);
                 }
             })
             .attr("fill", function(d) {
-                if(d.Change >= 0) {
+                if(d.change >= 0) {
                     return "green";
                 }
-                if(d.Change < 0) {
+                if(d.change < 0) {
                     return "red";
                 }
             })
@@ -123,8 +123,10 @@ class ChangeBarChart {
                     .style("top", e.pageY + "px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
-                             <h5> Category: ${d.Category}</h5>
-                             <h6> Change from 2019 to 2020: ${Number(d.Change).toFixed(2)} percentage points</h6>               
+                             <h5> Category: ${d.activityTopLevel}</h5>
+                             <h6> Change from 2019 to 2020: ${Number(d.change).toFixed(2)}% (from 
+                             ${Number(d.avgTime19).toFixed(1)} average minutes to ${Number(d.avgTime20).toFixed(1)} mins)</h6>
+                             <h6> This is a change of ${Number(d.minChange).toFixed(1)} average minutes</h6>                
                          </div>`);
             })
 
@@ -146,10 +148,7 @@ class ChangeBarChart {
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
             .attr("font-size", "10px")
-            .text("percentage point change");
-
-
-
+            .text("percent change");
 
     }
 }
