@@ -107,6 +107,33 @@ class LineChart {
             .text("income percentile (from 0 to 100)");
 
         vis.svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", vis.x(100) - 10)
+            .attr("y", vis.height + 32)
+            .attr("font-size", "10px")
+            .attr("font-style", "italic")
+            .text("highest earners");
+
+        vis.svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "middle")
+            .attr("x", vis.x(50))
+            .attr("y", vis.height + 32)
+            .attr("font-size", "10px")
+            .attr("font-style", "italic")
+            .text("middle earners");
+
+        vis.svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "beginning")
+            .attr("x", vis.x(0) + 10)
+            .attr("y", vis.height + 32)
+            .attr("font-size", "10px")
+            .attr("font-style", "italic")
+            .text("lowest earners");
+
+        vis.svg.append("text")
             .attr("class", "y label")
             .attr("text-anchor", "end")
             .attr("y", -35)
