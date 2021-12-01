@@ -161,8 +161,37 @@ class LineChart {
             .append('path')
             .attr('fill', 'none')
             .attr('stroke', d => myColor(d[0]))
-            .attr('stroke-width', 0.5)
-            .attr('d', (d) => line(Array.from(d.values())[1]));
+            .attr('stroke-width', function(d) {
+                if (d[0] == "2020") {
+                    return 5;
+                } else {
+                    return 0.5;
+                }
+            })
+            .attr('d', (d) => line(Array.from(d.values())[1]))
+            .on("mouseover", function(e, d) {
+                // show selection of arc
+                d3.select(this)
+                    .attr('stroke-width', 5)
+                // display info with tooltip
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", e.pageX + 20 + "px")
+                    .style("top", e.pageY + "px")
+                    .html(`
+                         <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
+                             <p>Year: ${d[0]}</p></p>                         
+                         </div>`);
+            })
+            .on('mouseout', function(e, d) {
+                d3.select(this)
+                    .attr('stroke-width', 0.5)
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
+            })
 
         vis.svg.append('g')
             .selectAll("dot")
