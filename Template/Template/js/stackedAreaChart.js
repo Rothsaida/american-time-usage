@@ -1,17 +1,5 @@
-
-/*
- * StackedAreaChart - ES6 Class
- * @param  parentElement 	-- the HTML element in which to draw the visualization
- * @param  data             -- the data the that's provided initially
- * @param  displayData      -- the data that will be used finally (which might vary based on the selection)
- *
- * @param  focus            -- a switch that indicates the current mode (focus or stacked overview)
- * @param  selectedIndex    -- a global 'variable' inside the class that keeps track of the index of the selected area
- */
-
 class StackedAreaChart {
 
-// constructor method to initialize StackedAreaChart object
 constructor(parentElement, data) {
     this.parentElement = parentElement;
     this.data = data;
@@ -19,7 +7,7 @@ constructor(parentElement, data) {
 
     let colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c',
 		'#fdbf6f','#ff7f00','#cab2d6','#6a3d9a', '#fcba03', '#9ad9a6',
-		'#ff3856', '#0d00ff', '#e3d800', '#e34800', '#584fab', '#22e6cf'];
+		'#ff3856', '#F6E2E5', '#c44fa1', '#eb86b6', '#7DDBD3', '#363636'];
 
     // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
 	this.dataCategories = Object.keys(this.data[0]).filter(d=>d !== "YEAR")
@@ -151,9 +139,7 @@ constructor(parentElement, data) {
 				return vis.colorScale(d)
 			})
 			.attr("d", d => vis.area(d))
-            
-            
-            // TO-DO (Activity IV): update tooltip text on hover
+
 			.on("mouseover", (event,d,i) => {
 				d3.select(".tooltip-text").text(d.key)
 			});
