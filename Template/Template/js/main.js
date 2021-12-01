@@ -106,12 +106,20 @@ function updateCategory() {
 }
 
 let value = d3.select("#ranking-type").property("value");
-
 function selectChanged() {
     value = d3.select("#ranking-type").property("value");
     let oldSVG = d3.select("#change-bar-chart");
     oldSVG.selectAll('*').remove();
     // so it changes with new selections
     myChangeBar.initVis();
+}
+
+let highlightYear = 0;
+function highlightYearFunction() {
+    highlightYear = d3.select("#year").property("value");
+    let oldSVGLine = d3.select("#avg-hours-worked");
+    oldSVGLine.selectAll('*').remove();
+    // so it changes with new selections
+    myAvgHoursWorked.initVis();
 }
 

@@ -10,7 +10,7 @@ class LineChart {
         //console.log("AVG HOURS WORKED")
         //console.log(this.data)
 
-        let colors = ["#1b70fc", "#faff16", "#d50527", "#158940", "#f898fd", "#24c9d7",
+        let colors = ["#1b70fc", "#fcc603", "#d50527", "#158940", "#f898fd", "#24c9d7",
             "#cb9b64", "#866888", "#22e67a", "#e509ae", "#9dabfa", "#437e8a", "#b21bff",
             "#ff7b91", "#94aa05", "#ac5906", "#82a68d", "#fe6616"]
 
@@ -140,7 +140,7 @@ class LineChart {
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
             .attr("font-size", "10px")
-            .text("hours worked per week");
+            .text("avg. hours worked per week");
 
         let grouped_data = d3.group(vis.data, d => d.YEAR);
 
@@ -162,7 +162,7 @@ class LineChart {
             .attr('fill', 'none')
             .attr('stroke', d => myColor(d[0]))
             .attr('stroke-width', function(d) {
-                if (d[0] == "2020") {
+                if (d[0] == highlightYear) {
                     return 5;
                 } else {
                     return 0.5;
@@ -179,8 +179,8 @@ class LineChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
-                             <p>Year: ${d[0]}</p></p>                         
+                         <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
+                             <h5>Year: ${d[0]}</h5></p>                         
                          </div>`);
             })
             .on('mouseout', function(e, d) {
@@ -209,6 +209,7 @@ class LineChart {
                 // show selection of arc
                 d3.select(this)
                     .attr('fill', 'black')
+                    .attr('r', 5)
 
                 // display info with tooltip
                 vis.tooltip
@@ -216,16 +217,17 @@ class LineChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
-                             <p>Year: ${d.YEAR}</p>
-                             <p> Income Percentile: ${Number(vis.percentileScale(d.FAMINCOME)).toFixed(0)} out of 100</p>
-                             <p> Average Hours Worked: ${Number(d.avgHours).toFixed(0)}</p>                         
+                         <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
+                             <h5>Year: ${d.YEAR}</h5>
+                             <h6> Income Percentile: ${Number(vis.percentileScale(d.FAMINCOME)).toFixed(0)} out of 100</h6>
+                             <h6> Average Hours Worked: ${Number(d.avgHours).toFixed(0)}</h6>                         
                          </div>`);
             })
 
             .on('mouseout', function(e, d) {
                 d3.select(this)
                     .attr("fill", d => myColor(2003))
+                    .attr('r', 1.5)
 
                 vis.tooltip
                     .style("opacity", 0)
