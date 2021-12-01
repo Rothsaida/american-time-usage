@@ -92,12 +92,23 @@
             <!-- header -->
             <div class="row justify-content-center" style="height: 20vh">
                 <div class="align-self-center">
-                    <h1>How has time spent doing different activities changed from 2019 to 2020?</h1>
+                    <h1>How has time spent doing different activities <i>changed</i> from 2019 to 2020?</h1>
                 </div>
             </div>
 
             <!-- graph -->
             <div class="row justify-content-center" style="height: 60vh">
+
+                <div class="col-md-3">
+                    <label for="ranking-type">Chart Data:</label>
+                    <select class="form-control" id="ranking-type" onchange="selectChanged()">
+                        <option value="change">Change</option>
+                        <option value="minChange">Min Change</option>
+                        <option value="avgTime19">Average Time in 2019</option>
+                        <option value="avgTime20">Average Time in 2020</option>
+                    </select>
+                </div>
+
                 <div class="align-self-center" id="change-bar-chart" style="height: 100%; width: 100%"></div>
 
             </div>

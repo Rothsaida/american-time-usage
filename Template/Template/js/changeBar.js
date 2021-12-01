@@ -16,9 +16,6 @@ class ChangeBarChart {
     initVis(){
         let vis = this;
 
-        vis.data.sort(function(b, a) {
-            return a.change - b.change;
-        });
 
         vis.margin = {top: 40, right: 150, bottom: 110, left: 170};
 
@@ -31,6 +28,21 @@ class ChangeBarChart {
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+
+        // TO-DO: (Filter, aggregate, modify data)
+        vis.wrangleData();
+
+    }
+
+    /*
+     * Data wrangling
+     */
+    wrangleData(){
+        let vis = this;
+
+        vis.data.sort(function(b, a) {
+            return a[value] - b[value];
+        });
 
         vis.x = d3.scaleBand()
             .range([ 0, vis.width ])
@@ -46,7 +58,15 @@ class ChangeBarChart {
             .style("text-anchor", "end");
 
         vis.y = d3.scaleLinear()
-            .domain([-50, 50])
+            .domain([
+                d3.min(vis.data, function (d) {
+                    if (value == "avgTime19" || value == "avgTime20") {
+                        return Number(d[value])
+                    } else {
+                        return Number(d[value]) - 10
+                    }
+                }),
+                d3.max(vis.data, d=>Number(d[value])) + 10])
             .range([ vis.height, 0]);
 
         vis.svg.append("g")
@@ -55,17 +75,6 @@ class ChangeBarChart {
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'barTooltip')
-
-        // TO-DO: (Filter, aggregate, modify data)
-        vis.wrangleData();
-
-    }
-
-    /*
-     * Data wrangling
-     */
-    wrangleData(){
-        let vis = this;
 
         // Update the visualization
         vis.updateVis();
@@ -86,27 +95,27 @@ class ChangeBarChart {
             .append("rect")
             .attr("x", function(d) { return vis.x(d.activityTopLevel); })
             .attr("y", function(d) {
-                if(d.change >= 0) {
-                    return vis.y(d.change);
+                if(d[value] >= 0) {
+                    return vis.y(d[value]);
                 }
-                if(d.change < 0) {
+                if(d[value] < 0) {
                     return baseline;
                 }
             })
             .attr("width", vis.x.bandwidth())
             .attr("height", function(d) {
-                if(d.change >= 0) {
-                    return baseline - vis.y(d.change);
+                if(d[value] >= 0) {
+                    return baseline - vis.y(d[value]);
                 }
-                if(d.change < 0) {
-                    return (vis.y(d.change) - baseline);
+                if(d[value] < 0) {
+                    return (vis.y(d[value]) - baseline);
                 }
             })
             .attr("fill", function(d) {
-                if(d.change >= 0) {
+                if(d[value] >= 0) {
                     return "green";
                 }
-                if(d.change < 0) {
+                if(d[value] < 0) {
                     return "red";
                 }
             })

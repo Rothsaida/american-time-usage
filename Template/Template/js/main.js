@@ -105,3 +105,13 @@ function updateCategory() {
     }
 }
 
+let value = d3.select("#ranking-type").property("value");
+
+function selectChanged() {
+    value = d3.select("#ranking-type").property("value");
+    let oldSVG = d3.select("#change-bar-chart");
+    oldSVG.selectAll('*').remove();
+    // so it changes with new selections
+    myChangeBar.initVis();
+}
+
