@@ -17,7 +17,7 @@ class ChangeBarChart {
         let vis = this;
 
 
-        vis.margin = {top: 40, right: 150, bottom: 110, left: 170};
+        vis.margin = {top: 40, right: 150, bottom: 130, left: 170};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height  - vis.margin.top - vis.margin.bottom;
@@ -63,10 +63,10 @@ class ChangeBarChart {
                     if (value == "avgTime19" || value == "avgTime20") {
                         return Number(d[value])
                     } else {
-                        return Number(d[value]) - 10
+                        return Number(d[value]) - 7
                     }
                 }),
-                d3.max(vis.data, d=>Number(d[value])) + 10])
+                d3.max(vis.data, d=>Number(d[value])) + 7])
             .range([ vis.height, 0]);
 
         vis.svg.append("g")
@@ -133,9 +133,9 @@ class ChangeBarChart {
                     .html(`
                          <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
                              <h5> Category: ${d.activityTopLevel}</h5>
-                             <h6> Change from 2019 to 2020: ${Number(d.change).toFixed(2)}% (from 
-                             ${Number(d.avgTime19).toFixed(1)} average minutes to ${Number(d.avgTime20).toFixed(1)} mins)</h6>
-                             <h6> This is a change of ${Number(d.minChange).toFixed(1)} average minutes</h6>                
+                             <h6> Change from 2019 to 2020: ${Number(d.change).toFixed(2)}% (or ${Number(d.minChange).toFixed(2)} average minutes) </h6>
+                             <h6> Average Minutes per Day in 2019: ${Number(d.avgTime19).toFixed(1)} </h6>
+                             <h6> Average Minutes per Day in 2020: ${Number(d.avgTime20).toFixed(1)} </h6>           
                          </div>`);
             })
 
@@ -157,7 +157,17 @@ class ChangeBarChart {
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
             .attr("font-size", "10px")
-            .text("percent change");
+            .text(function() {
+                if (value == "change") {
+                    return "percent change";
+                } else if (value == "minChange") {
+                    return "change in minutes per day from 2019 to 2020";
+                } else if (value == "avgTime19" || value == "avgTime20") {
+                    return "minutes per day";
+                } else {
+                    return " ";
+                }
+            });
 
     }
 }

@@ -90,22 +90,22 @@
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
             <!-- header -->
-            <div class="row justify-content-center" style="height: 20vh">
+            <div class="row justify-content-center" style="height: 25vh">
                 <div class="align-self-center">
                     <h1>How has time spent doing different activities <i>changed</i> from 2019 to 2020?</h1>
                 </div>
             </div>
 
             <!-- graph -->
-            <div class="row justify-content-center" style="height: 60vh">
+            <div class="row justify-content-center" style="height: 75vh">
 
                 <div class="col-md-3">
-                    <label for="ranking-type">Chart Data:</label>
+                    <label for="ranking-type">Category:</label>
                     <select class="form-control" id="ranking-type" onchange="selectChanged()">
-                        <option value="change">Change</option>
-                        <option value="minChange">Min Change</option>
-                        <option value="avgTime19">Average Time in 2019</option>
-                        <option value="avgTime20">Average Time in 2020</option>
+                        <option value="change">Percent Change</option>
+                        <option value="minChange">Absolute Change in Minutes</option>
+                        <option value="avgTime19">2019 Average Time by Activity Time</option>
+                        <option value="avgTime20">2020 Average Time by Activity</option>
                     </select>
                 </div>
 
