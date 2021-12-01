@@ -313,16 +313,16 @@ function updateVisualization() {
             .text(formatTime(data_element.MONTH));
 
         d3.select(".tool-BlackPercent")
-            .text("Black: " + data_element.BLACK);
+            .text("Black: " + (data_element.BLACK * 100).toFixed(1) + "%");
 
         d3.select(".tool-HispanicPercent")
-            .text("Hispanic: " + data_element.HISPANIC);
+            .text("Hispanic: " + (data_element.HISPANIC * 100).toFixed(1) + "%");
 
         d3.select(".tool-AsianPercent")
-            .text("Asian: " + data_element.ASIAN);
+            .text("Asian: " + (data_element.ASIAN * 100).toFixed(1) + "%");
 
         d3.select(".tool-WhitePercent")
-            .text("White: " + data_element.WHITE);
+            .text("White: " + (data_element.WHITE * 100).toFixed(1) + "%");
     }
 
 

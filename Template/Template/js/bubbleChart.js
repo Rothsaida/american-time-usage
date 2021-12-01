@@ -2,6 +2,8 @@ class BubbleChart {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
+
+        console.log("bubble")
         console.log(this.data);
 
         // let parseDate = d3.timeParse("%Y");
@@ -15,7 +17,6 @@ class BubbleChart {
 
         // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
         this.dataCategories = Object.keys(this.data[0]).filter(d=>d !== "YEAR")
-        // console.log(this.dataCategories)
 
         // prepare colors for range
         let colorArray = this.dataCategories.map( (d,i) => {
@@ -109,7 +110,8 @@ class BubbleChart {
             .attr("fill", d => vis.colorScale(d.Activity))
             .on("mouseover", d => Tooltip.style("opacity", 1))
             .on("mousemove", (e, d) =>
-                Tooltip.html(`<u>${d.Activity}</u>`)
+                Tooltip.html(`<u>${d.Activity}</u>
+                               <p> ${Number(d.TimeSpent).toFixed(1)}% of the average day</p>  `)
                     .style("left", (e.pageX+20) + "px")
                     .style("top", (e.pageY) + "px")
             )

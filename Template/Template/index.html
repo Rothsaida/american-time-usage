@@ -27,32 +27,34 @@
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
             <!-- header -->
-            <div class="row justify-content-center" style="height: 40vh">
+            <div class="row justify-content-center" style="height: 60vh">
                 <div class="align-self-center">
-                    <h1>American Time Usage</h1>
+                    <h1 id="title">American Time Usage</h1>
                     <h2>in the Era of the COVID-19 Pandemic</h2>
-                    <hr>
-                    <h6>
-                        Each year, the Bureau of Labor Statistics surveys thousands of households for the
-                        American Time Usage Survey, a project which tracks how Americans spend their time.
-                        This data helps illuminate how our society affords access to work, to leisure, and beyond.
-                        We hope to analyze how time usage was affected by the 2020 COVID pandemic.
-                    </h6>
-                    <hr>
+                    <img src="images/people.png" alt="people" height="100">
+                    <img src="images/Clock1.gif" alt="clock" width="200" height="200">
+                    <img src="images/people2.png" alt="more people" height="90">
                 </div>
             </div>
 
-            <!-- graph -->
-            <div class="row justify-content-center" style="height: 60vh">
-                <h5>Percentage Point Change in Time Usage from 2019 to 2020</h5>
-                <div class="align-self-center" id="change-bar-chart" style="height: 100%; width: 100%"></div>
+            <!-- spacer -->
+            <div class="row justify-content-center" style="height: 3vh"></div>
 
+            <div class="row justify-content-center" style="height: 30vh; margin: auto; width: 80%">
+                <h6>
+                    The pandemic radically affected millions of American's day-to-day lives. Jobs were
+                    lost, schools were closed, and travel was limited. We want to understand the magnitude
+                    of this disruption through analyzing the ways people spent their time differently during 2020.
+                </h6>
+                <h6>
+                    Each year, the Bureau of Labor Statistics surveys roughly ten thousand households for the
+                    <b>American Time Usage Survey</b>, a project which tracks how Americans spend their time.
+                    This data helps track <i>how our society chooses to use our collective time</i> — on work, on leisure,
+                    on care, on volunteering. This also reveals how we prioritize or change certain behaviors during
+                    different time periods, like during a pandemic.
+                </h6>
             </div>
 
-            <!-- brush -->
-            <div class="row justify-content-center" style="height: 10vh">
-                <div class="align-self-center" id="timeline" style="height: 100%; width: 100%"></div>
-            </div>
         </div>
     </div>
 </div>
@@ -64,17 +66,17 @@
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
             <!-- header -->
-            <div class="row justify-content-center" style="height: 15vh" id="headingTimeSource">
+            <div class="row justify-content-center" style="height: 10vh; margin: auto; width: 80%" id="headingTimeSource">
                 <div class="align-self-center">
                     <h1><b>Work</b> is still the largest time source for people in 2020</h1>
                 </div>
             </div>
 
-            <div class="row justify-content-center" style="height: 60vh">
+            <div class="row justify-content-center" style="height: 80vh">
                 <div class="align-self-center" id="bubble-chart" style="width: 90%; height: 90%"></div>
             </div>
 
-            <div class="row justify-content-center" style="height: 15vh">
+            <div class="row justify-content-center" style="height: 5vh">
                 <div class="align-self-center" style="height: 100%; width: 100%"></div>
             </div>
         </div>
@@ -88,6 +90,43 @@
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
             <!-- header -->
+            <div class="row justify-content-center" style="height: 25vh">
+                <div class="align-self-center">
+                    <h1>How has time spent doing different activities <i>changed</i> from 2019 to 2020?</h1>
+                </div>
+            </div>
+
+            <!-- graph -->
+            <div class="row justify-content-center" style="height: 75vh">
+
+                <div class="col-md-3">
+                    <label for="ranking-type">Category:</label>
+                    <select class="form-control" id="ranking-type" onchange="selectChanged()">
+                        <option value="change">Percent Change</option>
+                        <option value="minChange">Absolute Change in Minutes</option>
+                        <option value="avgTime19">2019 Average Time by Activity</option>
+                        <option value="avgTime20">2020 Average Time by Activity</option>
+                    </select>
+                </div>
+
+                <div class="align-self-center" id="change-bar-chart" style="height: 100%; width: 100%"></div>
+
+            </div>
+
+            <div class="row justify-content-center" style="height: 5vh">
+                <div class="align-self-center" style="height: 100%; width: 100%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Third Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2"
+             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+
+            <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
                     <h1>Time Usage Over the Last Two Decades</h1>
@@ -95,21 +134,23 @@
             </div>
 
             <!-- graph -->
-            <div class="row justify-content-center" style="height: 60vh">
-                <div class="align-self-center" id="stacked-area-chart" style="height: 100%; width: 100%"></div>
+            <div class="row justify-content-center" style="height: 65vh">
+                <div class="align-self-center" id="stacked-area-chart" style="height: 95%; width: 100%"></div>
             </div>
 
-            <div class="row justify-content-center" style="height: 13vh">
-                <h6>Consistently throughout the data, the largest proportions of time
-                    are spent on work, education, and sleep. Occasionally, there are bumps in how much
-                    time certain activities get, like a bump around 2014 in "government activities" <i>(which might
-                        be related to voting in the midterm elections that year)</i>.</h6>
+            <div class="row justify-content-center" style="height: 17vh; margin: auto; width: 80%">
+                <h6>Consistently throughout the last two decades, the largest proportions of time
+                    are spent on work, education, and sleep. The overall breakdown of average time per activity
+                    is surprisingly steady.</h6>
+                <h6>Occasionally, there are bumps in how much
+                    time certain activities get, like a bump around 2014 in <i>"government + civic activities"</i>
+                    (which might be from voting in the midterm elections that year).</h6>
             </div>
         </div>
     </div>
 </div>
 
-<!--Third Page-->
+<!--Fourth Page-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
@@ -140,7 +181,7 @@
     </div>
 </div>
 
-<!--Fourth Page-->
+<!--Fifth Page-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
@@ -173,34 +214,6 @@
     </div>
 </div>
 
-<!--Fifth Page-->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
-            <!-- header -->
-            <div class="row justify-content-center" style="height: 15vh">
-                <div class="align-self-center">
-                    <h1>Average Hours Worked per Week by Income</h1>
-                </div>
-            </div>
-            <div class="row justify-content-center" style="height: 60vh">
-                <div class="align-self-center" id="avg-hours-worked" style="height: 100%; width: 100%"></div>
-            </div>
-
-            <div class="row justify-content-center" style="height: 15vh">
-                <div class="align-self-center" style="height: 100%; width: 80%">
-                    Each colored line represents a different year.
-                    The relationship between income and hours worked is pretty flat — with actually the highest and lowest income earners working the most hours.
-                    As can be seen by the visualization above, the average number of hours worked are quite
-                    consistent over the last two decades, including during the 2020 pandemic period.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!--Sixth Page-->
 <div class="container-fluid">
     <div class="row">
@@ -208,26 +221,48 @@
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
             <!-- header -->
-            <div class="row justify-content-center" style="height: 15vh">
+            <div class="row justify-content-center" style="height: 20vh">
                 <div class="align-self-center">
-                    <h2 class="headingTitle">How has time spent doing different activities changed before and during the pandemic?</h2>
+                    <h1>The Unrelenting 40-Hour Workweek</h1>
+                    <h2>Average Hours Worked per Week by Income</h2>
                 </div>
             </div>
+            <div class="row justify-content-center" style="height: 60vh">
+                <div class="align-self-center" id="avg-hours-worked" style="height: 100%; width: 100%"></div>
+            </div>
 
-            <div class="row justify-content-center" style="height: 75vh">
-                <div class="align-self-center"style="width: 100%">
-                    <div class="box">
-                        <div class="one">
-                            Insert Visualization Here
-                            <br>
-                            Increases
-                        </div>
-                        <div class="two">
-                            Insert Visualization Here
-                            <br>
-                            Decreases
-                        </div>
-                    </div>
+            <div class="row justify-content-center" style="height: 30vh; margin: auto; width: 80%">
+                <hr>
+                <h6><b><i>Each colored line represents a different year.</i></b></h6>
+                <div class="col col-lg-3">
+                    <label for="year"><b>Highlight a Year:</b></label>
+                    <select class="form-control" id="year" onchange="highlightYearFunction()">
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                    </select>
+                </div>
+                <div class="col">
+                <div class="align-self-center" style="height: 100%; width: 100%">
+                    <p>Overall, the relationship between income and hours worked is pretty flat — with actually the highest and lowest income earners working the most hours.
+                    As can be seen by the visualization above, the average number of hours worked are quite
+                        consistent over the last two decades, including during the 2020 pandemic.</p>
+                </div>
                 </div>
             </div>
         </div>
@@ -245,7 +280,13 @@
                 <div class="align-self-center">
                     <form class="form-inLine">
                         <div class=""form-check form-check-inline>
-                            <label for="chart-option"><h1>Top 5 Time Uses by</h1><select class="form-control" id="chart-option" onchange="updateFunction()"></select></label>
+                            <label for="chart-option">
+                                <h1>Top 5 Time Uses by</h1>
+                                <select class="form-control" id="chart-option" onchange="updateCategory()">
+                                    <option value="SEX" selected>Sex</option>
+                                    <option value="RACE">Race</option>
+                                </select>
+                            </label>
 
                         </div>
                     </form>
@@ -255,6 +296,11 @@
             <div class="row justify-content-center" style="height: 75vh">
                 <div class="align-self-center" id="top-five-male" style="width: 50%; height: 50%"></div>
                 <div class="align-self-center" id="top-five-female" style="width: 50%; height: 50%"></div>
+                <div class="align-self-center" id="top-five-white" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-black" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-native" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-asian" style="width: 50%; height: 25%"></div>
+                <div class="align-self-center" id="top-five-mixed" style="width: 50%; height: 25%"></div>
             </div>
         </div>
     </div>
@@ -347,6 +393,9 @@
         crossorigin="anonymous"></script>
 <!-- d3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
