@@ -37,7 +37,8 @@ Promise.all(promises)
 function initMainPage(dataArray) {
 
     // log data
-    console.log('check out the data', dataArray[0]);
+    // console.log('check out the data', dataArray[0]);
+
     dataArray[0] = prepareData(dataArray[0])
 
     // init visualizations
