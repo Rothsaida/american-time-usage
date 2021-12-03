@@ -14,6 +14,7 @@ let myActivitiesByAsian;
 let myActivitiesByMixed;
 let selectedCategory = "SEX";
 let myChangeBar;
+let mySleepHeatmap;
 
 
 // load data using promises
@@ -22,7 +23,8 @@ let promises = [
     d3.csv("data/fulltimeHoursworked.csv"),
     d3.csv("data/gendergrouping.csv"),
     d3.csv("data/groupingbyrace.csv"),
-    d3.csv("data/change.csv")
+    d3.csv("data/change.csv"),
+    d3.csv("data/sleepandpersonalcare.csv")
 ];
 
 Promise.all(promises)
@@ -53,6 +55,7 @@ function initMainPage(dataArray) {
     myActivitiesByNative = new PieChart('top-five-native', dataArray[3], ["RACE", "120", "Native American"]);
     myActivitiesByAsian = new PieChart('top-five-asian', dataArray[3], ["RACE", "13", "Asian or Pacific Islander"]);
     myActivitiesByMixed = new PieChart('top-five-mixed', dataArray[3], ["RACE", "", "Two or more races"]);
+    mySleepHeatmap = new SleepHeatMap('sleep-heatmap', dataArray[5]);
 
     updateCategory();
 }

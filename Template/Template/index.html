@@ -312,23 +312,28 @@
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
 
-            <div class="row justify-content-center" style="height: 90vh">
-                <div class="align-self-center"style="height: 100%; width: 100%">
-                    <div class="box">
-                        <div class="one">
-                            <h1>Time Spent Alone</h1>
-                            <br>
-                            Insert Visualization Here
-                        </div>
-                        <div class="two">
-                            <h1>Time Spent in Sports and Leisure</h1>
-                            <br>
-                            Insert Visualization Here
-                        </div>
-                    </div>
-
+            <!-- header -->
+            <div class="row justify-content-center" style="height: 10vh">
+                <div class="align-self-center">
+                    <h1>Time Spent on Sleep or Personal Care</h1>
                 </div>
             </div>
+
+            <!-- graph -->
+            <div class="row justify-content-center" style="height: 90vh">
+                <div class="align-self-center" id="sleep-heatmap" style="height: 80%; margin: auto; width: 97%"></div>
+
+                <div class="align-self-center" style="height: 100%; margin: auto; width: 80%">
+                    <p>Younger people spend more time on sleep and personal care,
+                        with the median being between 10 and 12 hours per day. These age disparities really flatten out
+                    after the age of 20. Roughly 40% of people in the older age demographics spend an average of 8 to 10
+                    hours on sleep and personal care.</p>
+                </div>
+
+            </div>
+
+
+
         </div>
     </div>
 </div>
@@ -405,6 +410,7 @@
 <script src="js/avgHoursWorked.js"></script>
 <script src="js/pieChart.js"></script>
 <script src="js/changeBar.js"></script>
+<script src="js/sleepHeatmap.js"></script>
 
 </body>
 </html>

@@ -144,7 +144,7 @@ class LineChart {
 
         let grouped_data = d3.group(vis.data, d => d.YEAR);
 
-        console.log(grouped_data)
+        // console.log(grouped_data)
 
         let myColor = d3.scaleOrdinal()
             .domain(grouped_data.keys())
