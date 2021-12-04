@@ -18,6 +18,10 @@ body {
   /*color: white;*/
 }
 
+/*line break*/
+hr {
+  align-content: center;
+}
 h1 {
   font-weight: 100;
   margin-top: 50px;
@@ -158,8 +162,29 @@ h6 {
   }
 }
 
-.covid-spheres {
-  position: relative;
-  top: 20px;
-  transform: rotate(180deg);
+
+div.covid-sphere {
+  width: 50px;
+  height:50px;
+  position:absolute;
+}
+
+/*Globe*/
+.globe {
+  animation: pulse 2s linear infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  50% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 }
