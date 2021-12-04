@@ -121,11 +121,11 @@ function selectChanged() {
 
 let highlightYear = 0;
 function highlightYearFunction() {
-    // highlightYear = d3.select("#year").property("value");
-    // let oldSVGLine = d3.select("#avg-hours-worked");
-    // oldSVGLine.selectAll('*').remove();
-    // // so it changes with new selections
-    // myAvgHoursWorked.initVis();
+    highlightYear = d3.select("#year").property("value");
+    let oldSVGLine = d3.select("#avg-hours-worked");
+    oldSVGLine.selectAll('*').remove();
+    // so it changes with new selections
+    myAvgHoursWorked.initVis();
 }
 
 let USAvgGuess = 0;
