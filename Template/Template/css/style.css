@@ -1,27 +1,27 @@
 
 #title {
-  color: #009CB8;
+  color: #33ccff;
   font-weight: bold;
-  text-shadow: 1px 1px white;
+  text-shadow: 2px 1px black;
   font-size: 400%
 }
 
 body {
   font-family: Constantia;
-  background-color: black;
+  /*background-color: black;*/
   /*background-color: #FEFDEA;*/
   text-align: center;
   /*color: white;*/
 }
 
 .text {
-  color: white;
+  /*color: white;*/
 }
 
 h1 {
   font-weight: 100;
   margin-top: 50px;
-  color: white;
+  /*color: white;*/
 }
 
 h2 {
