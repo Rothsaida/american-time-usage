@@ -23,30 +23,71 @@
 <!--Intro Page-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+        <div class="col-md-8 offset-2">
+            <div>
+                <div class="scroll-indicator" id="section00" data-scroll-indicator-title="Home"></div>
+            </div>
             <!-- header -->
-            <div class="row justify-content-center" style="height: 60vh">
+            <div class="row justify-content-center" style="height: 100vh">
                 <div class="align-self-center">
                     <h1 id="title">American Time Usage</h1>
-                    <h2>in the Era of the COVID-19 Pandemic</h2>
-                    <img src="images/people.png" alt="people" height="100">
-                    <img src="images/Clock1.gif" alt="clock" width="200" height="200">
-                    <img src="images/people2.png" alt="more people" height="90">
+                    <h2 class="line-1 anim-typewriter" style="color:white">in the Era of the COVID-19 Pandemic</h2>
+                    <br>
+                    <div style="-webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(black), color-stop(0.5, #ccebf0), color-stop(0.5, #66cc00)) 21 30 30 21;
+                    box-shadow: 0 20px 100px black; border-radius: 50px;">
+                        <img src="images/people.png" alt="people" height="100">
+                        <img class="text" src="images/Clock1.gif" alt="clock" width="200" height="200">
+                        <img src="images/people2.png" alt="more people" height="90">
+                    </div>
+
                 </div>
             </div>
 
             <!-- spacer -->
-            <div class="row justify-content-center" style="height: 3vh"></div>
+<!--            <div class="row justify-content-center" style="height: 3vh"></div>-->
 
-            <div class="row justify-content-center" style="height: 30vh; margin: auto; width: 80%">
-                <h6>
+<!--            <div class="row justify-content-center" style="height: 30vh; margin: 5vh; width: 100%;-->
+<!--             border: medium solid tomato; border-radius: 20px; color:white">-->
+<!--                <h6>-->
+<!--                    The pandemic radically affected millions of American's day-to-day lives. Jobs were-->
+<!--                    lost, schools were closed, and travel was limited. We want to understand the magnitude-->
+<!--                    of this disruption through analyzing the ways people spent their time differently during 2020.-->
+<!--                </h6>-->
+<!--                <h6>-->
+<!--                    Each year, the Bureau of Labor Statistics surveys roughly ten thousand households for the-->
+<!--                    <b>American Time Usage Survey</b>, a project which tracks how Americans spend their time.-->
+<!--                    This data helps track <i>how our society chooses to use our collective time</i> — on work, on leisure,-->
+<!--                    on care, on volunteering. This also reveals how we prioritize or change certain behaviors during-->
+<!--                    different time periods, like during a pandemic.-->
+<!--                </h6>-->
+<!--            </div>-->
+
+        </div>
+    </div>
+</div>
+
+<!--Intro Continued Page-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <div>
+                <div class="scroll-indicator" id="section01" data-scroll-indicator-title="COVID-19"></div>
+            </div>
+<!--            Try and get these images to move continuously across the screen-->
+            <img class="covid-spheres" src="images/covid-pic.png" alt="covid" height="50">
+            <img class="covid-spheres" src="images/covid-pic.png" alt="covid" height="50">
+            <img class="covid-spheres" src="images/covid-pic.png" alt="covid" height="50">
+            <img class="covid-spheres" src="images/covid-pic.png" alt="covid" height="50">
+            <h1>COVID-19</h1>
+            <div class="row justify-content-center" style="height: 65vh; margin: 5vh; width: 100%;
+             border: medium solid tomato; border-radius: 20px; color:white; padding: 15px">
+
+                <h6 class="fade-in">
                     The pandemic radically affected millions of American's day-to-day lives. Jobs were
                     lost, schools were closed, and travel was limited. We want to understand the magnitude
                     of this disruption through analyzing the ways people spent their time differently during 2020.
                 </h6>
-                <h6>
+                <h6 class="fade-in">
                     Each year, the Bureau of Labor Statistics surveys roughly ten thousand households for the
                     <b>American Time Usage Survey</b>, a project which tracks how Americans spend their time.
                     This data helps track <i>how our society chooses to use our collective time</i> — on work, on leisure,
@@ -60,13 +101,14 @@
 </div>
 
 <!--First Page-->
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 10vh">
     <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+        <div class="col-md-8 offset-2">
+            <div>
+                <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Source of Time"></div>
+            </div>
             <!-- header -->
-            <div class="row justify-content-center" style="height: 10vh; margin: auto; width: 80%" id="headingTimeSource">
+            <div class="row justify-content-center" style="height: 10vh; margin: auto; width: 100%" id="headingTimeSource">
                 <div class="align-self-center">
                     <h1><b>Work</b> is still the largest time source for people in 2020</h1>
                 </div>
@@ -88,7 +130,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Time Spent"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 25vh">
                 <div class="align-self-center">
@@ -125,7 +169,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Last Two Decades"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
@@ -155,7 +201,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section05" data-scroll-indicator-title="Job Losses"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
@@ -186,7 +234,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Unemployment Rate"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
@@ -220,7 +270,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Avg Hours Worked"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 20vh">
                 <div class="align-self-center">
@@ -275,7 +327,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section08" data-scroll-indicator-title="Top Time Uses"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
@@ -312,7 +366,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section09" data-scroll-indicator-title="Sleep and Personal Care"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 10vh">
                 <div class="align-self-center">
@@ -344,7 +400,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section10" data-scroll-indicator-title="The Average Day"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
@@ -374,7 +432,9 @@
     <div class="row">
         <div class="col-md-8 offset-2"
              style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
-
+            <div>
+                <div class="scroll-indicator" id="section11" data-scroll-indicator-title="Conclusion"></div>
+            </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
@@ -397,6 +457,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
         crossorigin="anonymous"></script>
+
+<!-- CSS for Easy Scroll Dots -->
+<link rel="stylesheet" type="text/css" href="EasyScrollDots/easyScrollDots.min.css" />
+
+<!-- JS for Easy Scroll Dots -->
+<script type="text/javascript" src="EasyScrollDots/easyScrollDots.min.js"></script>
+
 <!-- d3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
