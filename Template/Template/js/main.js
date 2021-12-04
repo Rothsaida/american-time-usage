@@ -14,6 +14,7 @@ let myActivitiesByAsian;
 let myActivitiesByMixed;
 let selectedCategory = "SEX";
 let myChangeBar;
+let myRacialDisparities;
 
 
 // load data using promises
@@ -22,7 +23,8 @@ let promises = [
     d3.csv("data/fulltimeHoursworked.csv"),
     d3.csv("data/gendergrouping.csv"),
     d3.csv("data/groupingbyrace.csv"),
-    d3.csv("data/change.csv")
+    d3.csv("data/change.csv"),
+    d3.csv("data/racial-disparities-copy.csv")
 ];
 
 Promise.all(promises)
@@ -53,6 +55,7 @@ function initMainPage(dataArray) {
     myActivitiesByNative = new PieChart('top-five-native', dataArray[3], ["RACE", "120", "Native American"]);
     myActivitiesByAsian = new PieChart('top-five-asian', dataArray[3], ["RACE", "13", "Asian or Pacific Islander"]);
     myActivitiesByMixed = new PieChart('top-five-mixed', dataArray[3], ["RACE", "", "Two or more races"]);
+    myRacialDisparities = new LineChartRate('unemployment-rate', dataArray[5]);
 
     updateCategory();
 }
@@ -116,10 +119,23 @@ function selectChanged() {
 
 let highlightYear = 0;
 function highlightYearFunction() {
-    highlightYear = d3.select("#year").property("value");
-    let oldSVGLine = d3.select("#avg-hours-worked");
-    oldSVGLine.selectAll('*').remove();
-    // so it changes with new selections
-    myAvgHoursWorked.initVis();
+    // highlightYear = d3.select("#year").property("value");
+    // let oldSVGLine = d3.select("#avg-hours-worked");
+    // oldSVGLine.selectAll('*').remove();
+    // // so it changes with new selections
+    // myAvgHoursWorked.initVis();
 }
 
+let USAvgGuess = 0;
+function guessUSAvgFunction() {
+    var div = document.getElementById("unemployment-rate-guess");
+
+    USAvgGuess = d3.select("#race").property("US");
+    let oldSVGLine = d3.select("#unemployment-rate");
+    oldSVGLine.selectAll('*').remove();
+    // so it changes with new selections
+    myRacialDisparities.initVis();
+    while(div.firstChild){
+        div.removeChild(div.firstChild);
+    }
+}

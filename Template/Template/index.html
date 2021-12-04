@@ -169,7 +169,7 @@
                     <div class="one">
                         How many people in the US lost their jobs at the height of the pandemic? <br><br>
                         <input type="text" id="GuessJobsLost" name="GuessJobsLost" placeholder="Type Your Guess Here"><br><br>
-                        <button>Submit</button>
+                        <button onsubmit="myFunction()">Submit</button>
                     </div>
                     <div class="two">
                         <img src="./images/ImagePlaceholder.png" alt="Image Placeholder">
@@ -194,18 +194,19 @@
                     <h2>Highest in Black and Brown Communities</h2>
                 </div>
             </div>
-            <div class="row justify-content-center" style="height: 75vh">
+            <div class="row justify-content-center" style="height: 75vh"> <!--75vh-->
                 <div class="align-self-center"style="width: 100%">
-                    <div class="box">
+                    <div id="race" class="box">
                         <div class="two-thirds">
-                            <div id="chart-area-disparities"></div>
+<!--                            <div id="chart-area-disparities"></div>-->
+                            <div id="unemployment-rate" style="height: 100%; width: 100%"></div>
                         </div>
-                        <div class="one-third">
-                            What is the average US unemployment rate over this period of time? <br><br>
-                            <input type="text" id="GuessUSAvg" name="GuessUSAvg" placeholder="Type Your Guess Here"><br><br>
-                            <button>Submit</button>
-<!--                            On submit, dynamically draw a red line on the chart to the left to see how all of US compares to these racial breakdowns. Answer should pop up on the right-->
-                        </div>
+                            <div id="unemployment-rate-guess" class="one-third">
+                                What is the average US unemployment rate over this period of time? <br><br>
+                                <input type="text" name="GuessUSAvg" placeholder="Type Your Guess Here">
+                                <button id="submitUSAvg" value="US" onclick="guessUSAvgFunction()">Submit</button>
+                                <!-- On submit, dynamically draw a red line on the chart to the left to see how all of US compares to these racial breakdowns. Answer should pop up on the right-->
+                            </div>
                     </div>
                 </div>
             </div>
@@ -400,6 +401,7 @@
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
 <script src="js/racial-disparities.js"></script>
+<script src="js/racial-disparities2.js"></script>
 <script src="js/stackedAreaChart.js"></script>
 <script src="js/BubbleChart.js"></script>
 <script src="js/avgHoursWorked.js"></script>
