@@ -180,7 +180,7 @@ function guessJobLossFunction() {
         div.removeChild(div.firstChild);
     }
 
-    div.innerHTML += "<span style='font-size:40px'>22.3 Million</span>";
+    div.innerHTML += "<span style='font-size:50px; text-shadow: 2px 1px tomato; font-weight: bold'>22.3 Million</span>";
 }
 
 // Full page scroll
