@@ -22,6 +22,10 @@ class ClockChart {
             .domain(this.dataCategories)
             .range(colorArray);
 
+        this.clockGroup, this.fields, this.formatHour, this.formatMinute, this.formatSecond, this.height,
+            this.offSetX, this.offSetY, this.pi, this.render, this.scaleHours, this.scaleSecsMins, this.visual, this.width;
+
+
         this.initVis();
     }
 
@@ -47,10 +51,10 @@ class ClockChart {
 
         vis.pie = d3.pie()
             .value(d => d.DURATION)
-            .startAngle(Math.PI / 3);
+            // .startAngle(Math.PI / 3);
 
         vis.outerRadius = vis.width / 4;
-        vis.innerRadius = vis.outerRadius / 2;
+        vis.innerRadius = vis.outerRadius / 3;
 
         vis.arc = d3.arc()
             .innerRadius(vis.innerRadius)
@@ -83,6 +87,10 @@ class ClockChart {
     updateVis() {
         let vis = this;
 
+        let durations = {
+            entryAnimation: 8000
+        };
+
         // Bind data
         vis.arcs = vis.pieChartGroup.selectAll(".arc")
             .data(vis.pie(vis.displayData))
@@ -93,6 +101,7 @@ class ClockChart {
             .merge(vis.arcs)
             .attr("d", vis.arc)
             .attr("fill", d => vis.colorScale(d.data.activityTopLevel))
+            .attr("fill-opacity", 0.5)
 
             .on("mouseover", function(e, d) {
                 // show selection of arc
@@ -124,6 +133,39 @@ class ClockChart {
                     .style("top", 0)
                     .html(``);
             })
+
+        let angleInterpolation = d3.interpolate(vis.pie.startAngle()(), vis.pie.endAngle()());
+        let innerRadiusInterpolation = d3.interpolate(0, vis.innerRadius);
+        let outerRadiusInterpolation = d3.interpolate(0, vis.outerRadius);
+
+        let arc = d3.arc();
+
+        vis.arcs.transition()
+            .duration(durations.entryAnimation)
+            .attrTween("d", d => {
+                let originalEnd = d.endAngle;
+                return t => {
+                    let currentAngle = angleInterpolation(t);
+                    if (currentAngle < d.startAngle) {
+                        return "";
+                    }
+
+                    d.endAngle = Math.min(currentAngle, originalEnd);
+
+                    return arc(d);
+                };
+            });
+
+        vis.pieChartGroup.selectAll(".arc")
+            .transition()
+            .duration(durations.entryAnimation)
+            .tween("arcRadii", () => {
+                return t => arc
+                    .innerRadius(innerRadiusInterpolation(t))
+                    .outerRadius(outerRadiusInterpolation(t));
+            });
+
+
     }
 
     codeToActivity(code) {

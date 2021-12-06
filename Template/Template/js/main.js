@@ -11,12 +11,10 @@ let myActivitiesByWhite;
 let myActivitiesByBlack;
 let myActivitiesByNative;
 let myActivitiesByAsian;
-let myActivitiesByMixed;
 let selectedCategory = "SEX";
 let myChangeBar;
 let myRacialDisparities;
 let mySleepHeatmap;
-let myClockChart;
 
 // load data using promises
 let promises = [
@@ -70,9 +68,10 @@ function initMainPage(dataArray) {
     myRacialDisparities = new LineChartRate('unemployment-rate', dataArray[5]);
     mySleepHeatmap = new SleepHeatMap('sleep-heatmap', dataArray[6]);
     // myClockChart = new ClockChart('clock-chart', dataArray[5])
+    updateCategory();
     drawClocks(dataArray[7]);
 
-    updateCategory();
+
 }
 
 
@@ -110,13 +109,25 @@ function prepareGenderData(data) {
 }
 
 function drawClocks(data) {
-    let dataByPerson = d3.group(data, d=>d.YEAR, d=>d.personID)
-    for(let [i,d] of Object.entries(dataByPerson)) {
-        let clock = new ClockChart("clock-chart", d)
-        if (i >= 2) {
-            break;
-        }
+    let dataByPerson = d3.groups(data, d=>d.YEAR, d=>d.personID);
+    let all_clocks = document.getElementById("clock-charts");
+
+    for(let d of dataByPerson[1][1].slice(0,100)) {
+        let clock_element = document.createElement("div");
+        clock_element.id = `clock-chart-${d[1][0].personID}`;
+        clock_element.style = "width: 100%; height: 100%";
+        clock_element.className = "align-self-center";
+        all_clocks.appendChild(clock_element);
+        console.log(all_clocks)
+        let clock = new ClockChart(`clock-chart-${d[1][0].personID}`, d[1]);
     }
+
+    let outer_clock_el = document.createElement("div");
+    outer_clock_el.id = `clock-chart-outer`;
+    outer_clock_el.style = "width: 100%; height: 100%";
+    outer_clock_el.className = "align-self-center";
+    all_clocks.appendChild(outer_clock_el);
+    let outer_clock = new OuterClock("clock-chart-outer");
 }
 
 function updateCategory() {
