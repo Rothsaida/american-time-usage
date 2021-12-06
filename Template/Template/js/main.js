@@ -148,6 +148,8 @@ function guessUSAvgFunction() {
     while(div.firstChild){
         div.removeChild(div.firstChild);
     }
+
+    div.innerHTML += 'The Average US Unemployment Rate during this time period is about 6%.';
 }
 
 // Full page scroll
