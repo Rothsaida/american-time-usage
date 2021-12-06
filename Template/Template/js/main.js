@@ -14,6 +14,7 @@ let myActivitiesByAsian;
 let myActivitiesByMixed;
 let selectedCategory = "SEX";
 let myChangeBar;
+let myClockChart;
 
 
 // load data using promises
@@ -22,7 +23,8 @@ let promises = [
     d3.csv("data/fulltimeHoursworked.csv"),
     d3.csv("data/gendergrouping.csv"),
     d3.csv("data/groupingbyrace.csv"),
-    d3.csv("data/change.csv")
+    d3.csv("data/change.csv"),
+    d3.csv("data/timeData.csv")
 ];
 
 Promise.all(promises)
@@ -39,20 +41,23 @@ function initMainPage(dataArray) {
     // log data
     // console.log('check out the data', dataArray[0]);
 
-    dataArray[0] = prepareData(dataArray[0])
+    dataArray[0] = prepareData(dataArray[0]);
+    dataArray[2] = prepareGenderData(dataArray[2]);
+    dataArray[3] = prepareRaceData(dataArray[3]);
 
     // init visualizations
     myStackedArea = new StackedAreaChart('stacked-area-chart', dataArray[0]);
     myBubbleChart = new BubbleChart('bubble-chart', dataArray[0]);
     myAvgHoursWorked = new LineChart('avg-hours-worked', dataArray[1]);
     myChangeBar = new ChangeBarChart('change-bar-chart', dataArray[4]);
-    myActivitiesByMale = new PieChart('top-five-male', dataArray[2], ["SEX", "1", "Male"]);
-    myActivitiesByFemale = new PieChart('top-five-female', dataArray[2], ["SEX", "2", "Female"]);
-    myActivitiesByWhite = new PieChart('top-five-white', dataArray[3], ["RACE", "100", "White"]);
-    myActivitiesByBlack = new PieChart('top-five-black', dataArray[3], ["RACE", "110", "Black"]);
-    myActivitiesByNative = new PieChart('top-five-native', dataArray[3], ["RACE", "120", "Native American"]);
-    myActivitiesByAsian = new PieChart('top-five-asian', dataArray[3], ["RACE", "13", "Asian or Pacific Islander"]);
-    myActivitiesByMixed = new PieChart('top-five-mixed', dataArray[3], ["RACE", "", "Two or more races"]);
+    myActivitiesByMale = new PieChart('top-five-male', dataArray[2].get("1"), "Male");
+    myActivitiesByFemale = new PieChart('top-five-female', dataArray[2].get("2"), "Female");
+    myActivitiesByWhite = new PieChart('top-five-white', dataArray[3].get("10"), "White");
+    myActivitiesByBlack = new PieChart('top-five-black', dataArray[3].get("11"), "Black");
+    myActivitiesByNative = new PieChart('top-five-native', dataArray[3].get("12"), "Native American");
+    myActivitiesByAsian = new PieChart('top-five-asian', dataArray[3].get("13"), "Asian or Pacific Islander");
+    // myClockChart = new ClockChart('clock-chart', dataArray[5])
+    drawClocks(dataArray[5]);
 
     updateCategory();
 }
@@ -83,9 +88,26 @@ function prepareData(data){
     return data
 }
 
+function prepareRaceData(data) {
+    return d3.group(data, d => d.RACE.substring(0, 2));
+}
+
+function prepareGenderData(data) {
+    return d3.group(data, d => d.SEX.substring(0, 1));
+}
+
+function drawClocks(data) {
+    let dataByPerson = d3.group(data, d=>d.YEAR, d=>d.personID)
+    for(let [i,d] of Object.entries(dataByPerson)) {
+        let clock = new ClockChart("clock-chart", d)
+        if (i >= 2) {
+            break;
+        }
+    }
+}
+
 function updateCategory() {
     selectedCategory = $('#chart-option').val();
-    console.log(selectedCategory);
     if (selectedCategory === "SEX") {
         document.getElementById('top-five-male').style.visibility = "visible"
         document.getElementById('top-five-female').style.visibility = "visible"
@@ -93,7 +115,6 @@ function updateCategory() {
         document.getElementById('top-five-black').style.visibility = "hidden"
         document.getElementById('top-five-native').style.visibility = "hidden"
         document.getElementById('top-five-asian').style.visibility = "hidden"
-        document.getElementById('top-five-mixed').style.visibility = "hidden"
     } else {
         document.getElementById('top-five-male').style.visibility = "hidden"
         document.getElementById('top-five-female').style.visibility = "hidden"
@@ -101,7 +122,6 @@ function updateCategory() {
         document.getElementById('top-five-black').style.visibility = "visible"
         document.getElementById('top-five-native').style.visibility = "visible"
         document.getElementById('top-five-asian').style.visibility = "visible"
-        document.getElementById('top-five-mixed').style.visibility = "visible"
     }
 }
 

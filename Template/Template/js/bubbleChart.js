@@ -2,13 +2,6 @@ class BubbleChart {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
-
-        console.log("bubble")
-        console.log(this.data);
-
-        // let parseDate = d3.timeParse("%Y");
-        // console.log(parseDate("2020"))
-        // this.displayData = this.data.filter(d => d.YEAR === parseDate("2020"));
         this.displayData = [];
 
         let colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c',
@@ -63,8 +56,6 @@ class BubbleChart {
                 TimeSpent: vis.yearData[key]
             })
         })
-
-        console.log(vis.displayData);
 
         vis.updateVis();
     }

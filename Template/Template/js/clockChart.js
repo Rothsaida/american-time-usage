@@ -1,9 +1,8 @@
-class PieChart {
-    constructor(parentElement, data, category) {
+class ClockChart {
+    constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
-        this.category = category;
-        this.displayData = [];
+        this.displayData = data;
 
         this.colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c',
             '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a', '#fcba03', '#9ad9a6',
@@ -12,6 +11,7 @@ class PieChart {
         // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
         this.dataCategories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
             '11', '12', '13', '14', '15', '16', '18', '50']
+        // console.log(this.dataCategories)
 
         // prepare colors for range
         let colorArray = this.dataCategories.map((d, i) => {
@@ -40,24 +40,17 @@ class PieChart {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-        // add title
-        vis.svg.append('g')
-            .attr('class', 'title pie-title')
-            .append('text')
-            .text(vis.category)
-            .attr('transform', `translate(${vis.width / 2}, 20)`)
-            .attr('text-anchor', 'middle');
-
         // pie chart setup
         vis.pieChartGroup = vis.svg.append('g')
             .attr('id', 'pieDivRight')
             .attr("transform", "translate(" + vis.width / 2 + "," + vis.height / 2 + ")");
 
         vis.pie = d3.pie()
-            .value(d => d.duration);
+            .value(d => d.DURATION)
+            .startAngle(Math.PI / 3);
 
         vis.outerRadius = vis.width / 4;
-        vis.innerRadius = 0;
+        vis.innerRadius = vis.outerRadius / 2;
 
         vis.arc = d3.arc()
             .innerRadius(vis.innerRadius)
@@ -68,33 +61,21 @@ class PieChart {
             .attr('class', "tooltip")
             .attr('id', 'pieTooltip')
 
-
-        // call next method in pipeline
-        this.wrangleData();
+        vis.wrangleData();
     }
 
     wrangleData() {
         let vis = this;
 
-        vis.data.forEach(d => {
-            vis.displayData.push({
-                activity: d.activityTopLevel,
-                duration: +d.duration
-            })
+        let parseTime = d3.timeParse("%H:%M:%S");
+
+        vis.displayData.forEach(d => {
+            d.DURATION = +d.DURATION;
+            d.START = parseTime(d.START);
+            d.STOP = parseTime(d.STOP);
         })
 
-        if (vis.displayData.length > 18) {
-            let rolled = d3.rollup(vis.displayData, v=>d3.mean(v, d=>d.duration), d=>d.activity)
-            vis.displayData = [];
-            rolled = Object.fromEntries(rolled)
-            Object.entries(rolled).forEach(d => vis.displayData.push({
-                activity: d[0],
-                duration: d[1]
-            }))
-        }
-
-        vis.displayData.sort((a, b) => (a.duration > b.duration) ? -1 : 1)
-        vis.displayData = vis.displayData.slice(0,5);
+        console.log("clock data", vis.displayData);
 
         vis.updateVis();
     }
@@ -111,14 +92,14 @@ class PieChart {
             .append("path")
             .merge(vis.arcs)
             .attr("d", vis.arc)
-            .attr("fill", d => vis.colorScale(d.data.activity))
+            .attr("fill", d => vis.colorScale(d.data.activityTopLevel))
 
             .on("mouseover", function(e, d) {
                 // show selection of arc
                 d3.select(this)
                     .attr('stroke-width', '2px')
                     .attr('stroke', 'black')
-                    // .attr('fill', 'rgb(173,222,255)')
+                // .attr('fill', 'rgb(173,222,255)')
 
                 // display info with tooltip
                 vis.tooltip
@@ -127,15 +108,15 @@ class PieChart {
                     .style("top", e.pageY + "px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
-                             <h3>${vis.codeToActivity(d.data.activity)}<h3>
-                             <h4> Duration: ${d.data.duration.toFixed(2)} mins</h4>                       
+                             <h3>${vis.codeToActivity(d.data.activityTopLevel)}<h3>
+                             <h4> Duration: ${d.data.DURATION.toFixed(2)} mins</h4>                       
                          </div>`);
             })
 
             .on('mouseout', function(e, d) {
                 d3.select(this)
                     .attr('stroke-width', '0px')
-                    .attr("fill", d => vis.colorScale(d.data.activity))
+                    .attr("fill", d => vis.colorScale(d.data.activityTopLevel))
 
                 vis.tooltip
                     .style("opacity", 0)
