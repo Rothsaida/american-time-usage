@@ -17,7 +17,6 @@ let myChangeBar;
 let myRacialDisparities;
 let mySleepHeatmap;
 
-
 // load data using promises
 let promises = [
     d3.json("data/topLevelPercentage2.json"),
@@ -26,7 +25,7 @@ let promises = [
     d3.csv("data/groupingbyrace.csv"),
     d3.csv("data/change.csv"),
     d3.csv("data/racial-disparities-copy.csv"),
-    d3.csv("data/sleepandpersonalcare.csv")
+    d3.csv("data/sleepandpersonalcare.csv"),
 ];
 
 Promise.all(promises)
@@ -150,6 +149,17 @@ function guessUSAvgFunction() {
     }
 
     div.innerHTML += 'The Average US Unemployment Rate during this time period is about 6%.';
+}
+
+function guessJobLossFunction() {
+    var div = document.getElementById("job-loss-guess");
+
+    // so it changes with new selections
+    while(div.firstChild){
+        div.removeChild(div.firstChild);
+    }
+
+    div.innerHTML += "<span style='font-size:40px'>22.3 Million</span>";
 }
 
 // Full page scroll

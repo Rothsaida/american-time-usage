@@ -149,8 +149,7 @@
 <!--Third Page-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+        <div class="col-md-8 offset-2">
             <div>
                 <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Last Two Decades"></div>
             </div>
@@ -166,13 +165,24 @@
                 <div class="align-self-center" id="stacked-area-chart" style="height: 95%; width: 100%"></div>
             </div>
 
-            <div class="row justify-content-center" style="height: 17vh; margin: auto; width: 80%">
-                <h6>Consistently throughout the last two decades, the largest proportions of time
-                    are spent on work, education, and sleep. The overall breakdown of average time per activity
-                    is surprisingly steady.</h6>
-                <h6>Occasionally, there are bumps in how much
-                    time certain activities get, like a bump around 2014 in <i>"government + civic activities"</i>
-                    (which might be from voting in the midterm elections that year).</h6>
+            <div class="row justify-content-center" style="height: 15vh; margin: auto; width: 100%; padding: 15px;">
+                <div class="row" style="border: black">
+                    <div class="column" style="background-color:#ffd0c7; border: black">
+                        <h8>Consistently throughout the last two decades, the largest proportions of time
+                            are spent on work, education, and sleep. The overall breakdown of average time per activity
+                            is surprisingly steady.
+                        </h8>
+                    </div>
+                    <div class="column" style="background-color:#ffd0c7; border: black">
+                        <h8>Occasionally, there are bumps in how much
+                            time certain activities get, like a bump around 2014 in <i>"government + civic activities"</i>
+                            (which might be from voting in the midterm elections that year).
+                        </h8>
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="height: 5vh">
+                    <div class="align-self-center" style="height: 100%; width: 100%"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -182,7 +192,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+             style="margin-top: 15vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
             <div>
                 <div class="scroll-indicator" id="section05" data-scroll-indicator-title="Job Losses"></div>
             </div>
@@ -196,13 +206,13 @@
             <div class="row justify-content-center" style="height: 75vh">
                 <div class="align-self-center"style="width: 100%"></div>
                 <div class="box">
-                    <div class="one">
-                        How many people in the US lost their jobs at the height of the pandemic? <br><br>
+                    <div class="one" id="job-loss-guess">
+                        How many people in the US lost their jobs at the height of the pandemic? (In Millions) <br><br>
                         <input type="text" id="GuessJobsLost" name="GuessJobsLost" placeholder="Type Your Guess Here"><br><br>
-                        <button onsubmit="myFunction()">Submit</button>
+                        <button id="submitJobLoss" value="US" onclick="guessJobLossFunction()">Submit</button>
                     </div>
                     <div class="two">
-                        <img src="./images/ImagePlaceholder.png" alt="Image Placeholder">
+                        <div id="job-loss-rate" style="height: 60vh; width: 100%"></div>
                     </div>
                 </div>
             </div>
