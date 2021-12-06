@@ -3,6 +3,28 @@ class ChangeBarChart {
         this.parentElement = parentElement;
         this.data = data;
 
+        this.colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c',
+            '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a', '#fcba03', '#9ad9a6',
+            '#ff3856', '#0d00ff', '#e3d800', '#e34800', '#584fab', '#22e6cf'];
+
+        // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
+        this.dataCategories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+            '11', '12', '13', '14', '15', '16', '18', '50']
+        // console.log(this.dataCategories)
+
+        // prepare colors for range
+        let colorArray = this.dataCategories.map((d, i) => {
+            return this.colors[i % 18]
+        })
+        // Set ordinal color scale
+        this.colorScale = d3.scaleOrdinal()
+            .domain(this.dataCategories)
+            .range(colorArray);
+
+        // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
+        //console.log("AVG HOURS WORKED")
+        // console.log(this.data)
+
         this.initVis()
     }
 
@@ -105,12 +127,7 @@ class ChangeBarChart {
                 }
             })
             .attr("fill", function(d) {
-                if(d[value] >= 0) {
-                    return "green";
-                }
-                if(d[value] < 0) {
-                    return "red";
-                }
+                return vis.colorScale(d.activityTopLevel);
             })
             .on("mouseover", function(e, d) {
                 // show selection of arc
