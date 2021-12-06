@@ -68,9 +68,10 @@ class ChangeBarChart {
             .attr("transform", "translate(0," + vis.height + ")")
             .call(d3.axisBottom(vis.x))
             .selectAll("text")
-            .attr("transform", "translate(-10,0)rotate(-45)")
-            .attr("font-size", "7px")
-            .style("text-anchor", "end");
+            .attr("transform", "translate(-10,0)rotate(-40)")
+            .attr("font-size", "12px")
+            .style("text-anchor", "end")
+            .style("font-family", "Constania");
 
         vis.y = d3.scaleLinear()
             .domain([
@@ -141,7 +142,7 @@ class ChangeBarChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
+                         <div style="border: thin solid black; border-radius: 2px; background: white; padding: 5px; font-family: Constantia;">
                              <h5> Category: ${d.activityTopLevel}</h5>
                              <h6> Change from 2019 to 2020: ${Number(d.change).toFixed(2)}% (or ${Number(d.minChange).toFixed(2)} average minutes) </h6>
                              <h6> Average Minutes per Day in 2019: ${Number(d.avgTime19).toFixed(1)} </h6>
@@ -159,14 +160,17 @@ class ChangeBarChart {
                     .style("top", 0)
                     .html(``);
             })
+            .transition()
+            .duration(1000);
 
         vis.svg.append("text")
             .attr("class", "y label")
             .attr("text-anchor", "end")
-            .attr("y", -40)
+            .attr("y", -45)
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
-            .attr("font-size", "10px")
+            .attr("font-size", "15px")
+            .style("font-family", "Constania")
             .text(function() {
                 if (value == "change") {
                     return "percent change";
@@ -178,6 +182,5 @@ class ChangeBarChart {
                     return " ";
                 }
             });
-
     }
 }

@@ -183,6 +183,17 @@ function guessUSAvgFunction() {
     div.innerHTML += 'The Average US Unemployment Rate during this time period is about 6%.';
 }
 
+function guessJobLossFunction() {
+    var div = document.getElementById("job-loss-guess");
+
+    // so it changes with new selections
+    while(div.firstChild){
+        div.removeChild(div.firstChild);
+    }
+
+    div.innerHTML += "<span style='font-size:40px'>22.3 Million</span>";
+}
+
 // Full page scroll
 $(window).on("load",function() {
     $(window).scroll(function() {

@@ -29,7 +29,7 @@ class PieChart {
         let vis = this;
 
         // margin conventions
-        vis.margin = {top: 10, right: 50, bottom: 10, left: 50};
+        vis.margin = {top: 75, right: 50, bottom: 75, left: 50};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -126,7 +126,7 @@ class PieChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
+                         <div style="border: thin solid black; border-radius: 5px; background: white; padding: 20px; opacity: 0.9; font-family: Constantia">
                              <h3>${vis.codeToActivity(d.data.activity)}<h3>
                              <h4> Duration: ${d.data.duration.toFixed(2)} mins</h4>                       
                          </div>`);
