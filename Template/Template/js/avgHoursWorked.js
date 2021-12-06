@@ -179,7 +179,7 @@ class LineChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
+                         <div style="border: thin solid black; border-radius: 2px; background: white; padding: 5px; font-family: Constantia; opacity: 0.8;">
                              <h5>Year: ${d[0]}</h5></p>                         
                          </div>`);
             })
@@ -217,7 +217,7 @@ class LineChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
+                         <div style="border: thin solid black; border-radius: 2px; background: white; padding: 5px; font-family: Constantia; opacity: 0.8;">
                              <h5>Year: ${d.YEAR}</h5>
                              <h6> Income Percentile: ${Number(vis.percentileScale(d.FAMINCOME)).toFixed(0)} out of 100</h6>
                              <h6> Average Hours Worked: ${Number(d.avgHours).toFixed(0)}</h6>                         

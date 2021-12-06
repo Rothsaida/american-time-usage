@@ -42,7 +42,7 @@
     right: calc(100% + 8px);
     white-space: nowrap;
     top: 50%;
-    font-family: arial, sans-serif;
+    font-family: Constantia;
     font-size: 16px;
     line-height: 17px;
     width: 0;
@@ -61,7 +61,7 @@
     content: "-----";
     padding-left: 5px;
     letter-spacing: -2px;
-    font-family: arial, sans-serif;
+    font-family: Constantia;
     vertical-align: text-top;
     line-height: 14px;
 }

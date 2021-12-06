@@ -224,7 +224,7 @@ class LineChartRate {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
+                         <div style="border: thin solid black; border-radius: 2px; background: white; padding: 5px; font-family: Constantia; opacity: 0.8;">
                              <h5>Demographic: ${d[0]}</h5></p>
                          </div>`);
             })
@@ -262,7 +262,7 @@ class LineChartRate {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
+                         <div style="border: thin solid black; border-radius: 2px; background: white; padding: 5px; font-family: Constantia; opacity: 0.8;">
                              <h5>${d.RACE}</h5>
                              <h6> Month: ${(formatDate(Date.parse(d.MONTH)))}</h6>
                              <h6> Percent Unemployed: ${Number(d.PERCENT).toFixed(1)}</h6>

@@ -34,12 +34,11 @@
                     <h2 class="line-1 anim-typewriter" style="color:tomato; ">in the Era of the COVID-19 Pandemic</h2>
                     <br>
                     <div style="background: linear-gradient(to bottom, #33ccff 0%, white 100%);">
-<!--                    /*-webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(black), color-stop(0.5, #ccebf0), color-stop(0.5, #66cc00)) 21 30 30 21;>*/-->
                         <img src="images/people.png" alt="people" height="100">
                         <img class="text" src="images/Clock1.gif" alt="clock" width="200" height="200">
                         <img src="images/people2.png" alt="more people" height="90">
                     </div>
-                    <hr>
+                    <hr style="color: tomato; width: 120%; margin-left: -13vh; margin-top: 10vh; padding-top: 2px">
                 </div>
             </div>
 
@@ -100,9 +99,6 @@
                 <div class="align-self-center" id="bubble-chart" style="width: 90%; height: 90%"></div>
             </div>
 
-            <div class="row justify-content-center" style="height: 5vh">
-                <div class="align-self-center" style="height: 100%; width: 100%"></div>
-            </div>
         </div>
     </div>
 </div>
@@ -110,29 +106,31 @@
 <!--Second Page-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+        <div class="col-md-8 offset-2" style="margin-top: 15vh; border: medium solid tomato; border-radius: 5px; width: 90%; height: 120%; margin-left: 10vh; padding-bottom: 10vh">
             <div>
                 <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Time Spent"></div>
             </div>
             <!-- header -->
-            <div class="row justify-content-center" style="height: 25vh">
+            <div class="row justify-content-center" style="height: 30vh">
                 <div class="align-self-center">
                     <h1>How has time spent doing different activities <i>changed</i> from 2019 to 2020?</h1>
                 </div>
             </div>
 
             <!-- graph -->
-            <div class="row justify-content-center" style="height: 75vh">
+            <div class="row justify-content-center" style="height: 80vh; width: 120%; margin-left: -20vh;">
 
                 <div class="col-md-3">
-                    <label for="ranking-type">Category:</label>
-                    <select class="form-control" id="ranking-type" onchange="selectChanged()">
-                        <option value="change">Percent Change</option>
-                        <option value="minChange">Absolute Change in Minutes</option>
-                        <option value="avgTime19">2019 Average Time by Activity</option>
-                        <option value="avgTime20">2020 Average Time by Activity</option>
-                    </select>
+                    <center>
+                        <label for="ranking-type">Category:</label>
+                        <select class="form-control" id="ranking-type" onchange="selectChanged()">
+                            <option value="change">Percent Change</option>
+                            <option value="minChange">Absolute Change in Minutes</option>
+                            <option value="avgTime19">2019 Average Time by Activity</option>
+                            <option value="avgTime20">2020 Average Time by Activity</option>
+                        </select>
+                    </center>
+
                 </div>
 
                 <div class="align-self-center" id="change-bar-chart" style="height: 100%; width: 100%"></div>
@@ -154,15 +152,19 @@
                 <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Last Two Decades"></div>
             </div>
             <!-- header -->
-            <div class="row justify-content-center" style="height: 15vh">
+            <div class="row justify-content-center" style="height: 20vh">
                 <div class="align-self-center">
-                    <h1>Time Usage Over the Last Two Decades</h1>
+                    <div class="fade-in">
+                        <h1>Time Usage Over the Last Two Decades</h1>
+                    </div>
                 </div>
             </div>
 
             <!-- graph -->
             <div class="row justify-content-center" style="height: 65vh">
-                <div class="align-self-center" id="stacked-area-chart" style="height: 95%; width: 100%"></div>
+                <div class="fade-in">
+                    <div class="align-self-center" id="stacked-area-chart" style="height: 95%; width: 100%"></div>
+                </div>
             </div>
 
             <div class="row justify-content-center" style="height: 15vh; margin: auto; width: 100%; padding: 15px;">
@@ -192,7 +194,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-2"
-             style="margin-top: 15vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+             style="margin-top: 15vh; border: medium solid tomato; border-radius: 5px; width: 90%; height: 120%; margin-left: 10vh">
             <div>
                 <div class="scroll-indicator" id="section05" data-scroll-indicator-title="Job Losses"></div>
             </div>
@@ -231,18 +233,21 @@
             <!-- header -->
             <div class="row justify-content-center" style="height: 15vh">
                 <div class="align-self-center">
-                    <h1>Unemployment Rate</h1>
-                    <h2>Highest in Black and Brown Communities</h2>
+                    <div class="fade-in">
+                        <h1>Unemployment Rate</h1>
+                        <h2>Highest in Black and Brown Communities</h2>
+                    </div>
+
                 </div>
             </div>
             <div class="row justify-content-center" style="height: 95vh"> <!--75vh-->
                 <div class="align-self-center"style="width: 100%">
                     <div id="race" class="box">
-                        <div class="two-thirds">
-<!--                            <div id="chart-area-disparities"></div>-->
-                            <div id="unemployment-rate" style="height: 60vh; width: 100%"></div>
-                        </div>
-                            <div id="unemployment-rate-guess" class="one-third">
+                            <div class="two-thirds">
+                                <!--                            <div id="chart-area-disparities"></div>-->
+                                <div id="unemployment-rate" style="height: 60vh; width: 100%"></div>
+                            </div>
+                            <div id="unemployment-rate-guess" class="one-third" style="margin-top: 10vh">
                                 What is the average US unemployment rate over this period of time? <br><br>
                                 <input type="text" name="GuessUSAvg" placeholder="Type Your Guess Here">
                                 <button id="submitUSAvg" value="US" onclick="guessUSAvgFunction()">Submit</button>
@@ -251,7 +256,7 @@
                     </div>
                 </div>
             </div>
-
+            <hr style="color: tomato; width: 120%; margin-left: -13vh; margin-top: 10vh; padding-top: 2px">
         </div>
     </div>
 </div>
@@ -259,20 +264,23 @@
 <!--Sixth Page-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+        <div class="col-md-8 offset-2">
             <div>
                 <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Avg Hours Worked"></div>
             </div>
             <!-- header -->
             <div class="row justify-content-center" style="height: 20vh">
                 <div class="align-self-center">
-                    <h1>The Unrelenting 40-Hour Workweek</h1>
-                    <h2>Average Hours Worked per Week by Income</h2>
+                    <div class="fade-in">
+                        <h1>The Unrelenting 40-Hour Workweek</h1>
+                        <h2>Average Hours Worked per Week by Income</h2>
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center" style="height: 60vh">
-                <div class="align-self-center" id="avg-hours-worked" style="height: 100%; width: 100%"></div>
+                <div class="fade-in">
+                    <div class="align-self-center" id="avg-hours-worked" style="height: 100%; width: 100%"></div>
+                </div>
             </div>
 
             <div class="row justify-content-center" style="height: 30vh; margin: auto; width: 80%">
@@ -354,8 +362,7 @@
 <!--Eighth Page-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 offset-2"
-             style="margin-top: 5vh; border: thin solid grey; border-radius: 5px; background: rgba(221,221,221,0.45)">
+        <div class="col-md-8 offset-2">
             <div>
                 <div class="scroll-indicator" id="section09" data-scroll-indicator-title="Sleep and Personal Care"></div>
             </div>

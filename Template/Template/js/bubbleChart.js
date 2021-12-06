@@ -105,6 +105,7 @@ class BubbleChart {
                                <p> ${Number(d.TimeSpent).toFixed(1)}% of the average day</p>  `)
                     .style("left", (e.pageX+20) + "px")
                     .style("top", (e.pageY) + "px")
+                    .style("font-family", "Constantia")
             )
             .on("mouseout", d => Tooltip.style("opacity", 0))
 

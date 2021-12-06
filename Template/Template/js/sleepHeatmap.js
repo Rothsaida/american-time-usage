@@ -103,7 +103,7 @@ class SleepHeatMap {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 2px; background: lightgrey; padding: 5px">
+                         <div style="border: thin solid black; border-radius: 2px; background: white; padding: 5px; font-family: Constantia">
                              <h5> Age Group: ${d.age_grouping}</h5>
                              <h6> ${d.count} out of ${d.totals} in this age group</h6>
                              <h6> Percentage of Age Group: ${Number(d.percentage * 100).toFixed(1)}%</h6>

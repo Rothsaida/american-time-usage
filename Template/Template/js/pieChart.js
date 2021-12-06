@@ -126,7 +126,7 @@ class PieChart {
                     .style("left", e.pageX + 20 + "px")
                     .style("top", e.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
+                         <div style="border: thin solid black; border-radius: 5px; background: white; padding: 20px; opacity: 0.9; font-family: Constantia">
                              <h3>${vis.codeToActivity(d.data.activity)}<h3>
                              <h4> Duration: ${d.data.duration.toFixed(2)} mins</h4>                       
                          </div>`);
