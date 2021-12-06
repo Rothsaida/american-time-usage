@@ -7,7 +7,7 @@ let width = 400 - margin.left - margin.right,
     height = 250 - margin.top - margin.bottom;
 
 let svg = d3.select("#chart-area-disparities").append("svg")
-    .attr("width", width + margin.left + margin.right + 20)
+    .attr("width", width + margin.left + margin.right + 30)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -277,7 +277,7 @@ function updateVisualization() {
 
     // has mouse movements
     svg.append("rect")
-        .attr("width", width + 20)
+        .attr("width", width - 20)
         .attr("height", height - padding - 10)
         .attr("transform", "translate(" + 30 + ",0)")
         .attr("class", "rectangleOverlay")
@@ -313,16 +313,16 @@ function updateVisualization() {
             .text(formatTime(data_element.MONTH));
 
         d3.select(".tool-BlackPercent")
-            .text("Black: " + data_element.BLACK);
+            .text("Black: " + (data_element.BLACK * 100).toFixed(1) + "%");
 
         d3.select(".tool-HispanicPercent")
-            .text("Hispanic: " + data_element.HISPANIC);
+            .text("Hispanic: " + (data_element.HISPANIC * 100).toFixed(1) + "%");
 
         d3.select(".tool-AsianPercent")
-            .text("Asian: " + data_element.ASIAN);
+            .text("Asian: " + (data_element.ASIAN * 100).toFixed(1) + "%");
 
         d3.select(".tool-WhitePercent")
-            .text("White: " + data_element.WHITE);
+            .text("White: " + (data_element.WHITE * 100).toFixed(1) + "%");
     }
 
 

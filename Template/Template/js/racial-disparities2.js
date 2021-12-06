@@ -1,23 +1,16 @@
-class LineChart {
+class LineChartRate {
 
 // constructor method to initialize StackedAreaChart object
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
 
-
-        // grab all the keys from the key value pairs in data (filter out 'year' ) to get a list of categories
-        //console.log("AVG HOURS WORKED")
-        //console.log(this.data)
-
-        let colors = ["#1b70fc", "#fcc603", "#d50527", "#158940", "#f898fd", "#24c9d7",
-            "#cb9b64", "#866888", "#22e67a", "#e509ae", "#9dabfa", "#437e8a", "#b21bff",
-            "#ff7b91", "#94aa05", "#ac5906", "#82a68d", "#fe6616"]
+        let colors = ["#191970", "#38678f", "red", "#568ebd", "#8ca9cf"];
 
         this.colors = colors;
 
         this.colorScale = d3.scaleOrdinal()
-            .domain([2003, 2020])
+            .domain(["Black", "Hispanic", "US", "Asian", "White"])
             .range(colors);
 
         this.initVis()
@@ -26,36 +19,43 @@ class LineChart {
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 30, right: 100, bottom: 50, left: 120};
+        vis.margin = {top: 10, right: 20, bottom: 20, left: 45};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height  - vis.margin.top - vis.margin.bottom;
 
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
+            .attr("width", vis.width + vis.margin.left + vis.margin.right + 50)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-        // Scales and axes
-        vis.percentileScale = d3.scaleLinear()
-            .range([0, 100])
-            .domain([1, 16]);
+        // padding for axis
+        vis.padding = 10;
 
-        vis.x = d3.scaleLinear()
+        var maxDate = "2021-04-02";
+
+        var minDate = "2020-01-01";
+
+        // Scales and axes
+
+        vis.x = d3.scaleTime()
             .range([0, vis.width])
-            .domain([-3, 103]);
+            .domain([Date.parse(minDate), Date.parse(maxDate)]);
 
         vis.y = d3.scaleLinear()
             .range([vis.height,0])
-            .domain([35,50]);
+            .domain([0, 0.2]);
 
         vis.xAxis = d3.axisBottom()
-            .scale(vis.x);
+            .scale(vis.x)
+            .tickFormat(d3.timeFormat("%b %Y"))
+            .ticks(8);
 
         vis.yAxis = d3.axisLeft()
-            .scale(vis.y);
+            .scale(vis.y)
+            .tickFormat(formatPercent);
 
         vis.svg.append("g")
             .attr("class", "x-axis axis")
@@ -69,6 +69,81 @@ class LineChart {
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'dotTooltip')
+
+        // Legend
+        vis.legend = vis.svg.append("g")
+            .attr('class', 'legend')
+            .attr('transform', `translate(${vis.width - 15}, ${vis.height - 50})`)
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('text')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', 20)
+            .attr('y', -56)
+            .attr("font-size", "15px")
+            .text("Legend")
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('rect')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', d => 20)
+            .attr('y', (d,i) => i * 12 - 50)
+            .attr('fill', d => d)
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('text')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', 45)
+            .attr('y', -42)
+            .attr("font-size", "10px")
+            .text("Black")
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('text')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', 45)
+            .attr('y', -30)
+            .attr("font-size", "10px")
+            .text("Hispanic")
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('text')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', 45)
+            .attr('y', -18)
+            .attr("font-size", "10px")
+            .text("All")
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('text')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', 45)
+            .attr('y', -6)
+            .attr("font-size", "10px")
+            .text("Asian")
+
+        vis.legend.selectAll().data(vis.colors)
+            .enter()
+            .append('text')
+            .attr('width', 20)
+            .attr('height', 10)
+            .attr('x', 45)
+            .attr('y', 6)
+            .attr("font-size", "10px")
+            .text("White")
+
 
         // TO-DO: (Filter, aggregate, modify data)
         vis.wrangleData();
@@ -92,67 +167,31 @@ class LineChart {
     updateVis(){
         let vis = this;
 
-
-
-        // Call axis functions with the new domain
+        // Call axis functions
         vis.svg.select(".x-axis").call(vis.xAxis);
         vis.svg.select(".y-axis").call(vis.yAxis);
 
-        vis.svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "end")
-            .attr("x", vis.width)
-            .attr("y", vis.height - 6)
-            .attr("font-size", "10px")
-            .text("income percentile (from 0 to 100)");
-
-        vis.svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "end")
-            .attr("x", vis.x(100) - 10)
-            .attr("y", vis.height + 32)
-            .attr("font-size", "10px")
-            .attr("font-style", "italic")
-            .text("highest earners");
-
-        vis.svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "middle")
-            .attr("x", vis.x(50))
-            .attr("y", vis.height + 32)
-            .attr("font-size", "10px")
-            .attr("font-style", "italic")
-            .text("middle earners");
-
-        vis.svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "beginning")
-            .attr("x", vis.x(0) + 10)
-            .attr("y", vis.height + 32)
-            .attr("font-size", "10px")
-            .attr("font-style", "italic")
-            .text("lowest earners");
 
         vis.svg.append("text")
             .attr("class", "y label")
             .attr("text-anchor", "end")
-            .attr("y", -35)
+            .attr("y", -43)
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
             .attr("font-size", "10px")
-            .text("avg. hours worked per week");
+            .text("Unemployment Rate");
 
-        let grouped_data = d3.group(vis.data, d => d.YEAR);
+        let grouped_data = d3.group(vis.data, d => d.RACE);
 
-        // console.log(grouped_data)
+        console.log("Group:", grouped_data);
 
         let myColor = d3.scaleOrdinal()
             .domain(grouped_data.keys())
             .range(vis.colors);
 
         let line = d3.line()
-            .x(d => vis.x(vis.percentileScale(d.FAMINCOME)) )
-            .y(d => vis.y(d.avgHours) )
+            .x(d => vis.x(Date.parse((d.MONTH))) )
+            .y(d => vis.y(Number(d.PERCENT)/100.0))
             .curve(d3.curveLinear);
 
         vis.svg.selectAll('.line')
@@ -162,7 +201,7 @@ class LineChart {
             .attr('fill', 'none')
             .attr('stroke', d => myColor(d[0]))
             .attr('stroke-width', function(d) {
-                if (d[0] == highlightYear) {
+                if (d[2] == USAvgGuess && myColor(d[0]) == 'red') {
                     return 5;
                 } else {
                     return 0.5;
@@ -172,7 +211,13 @@ class LineChart {
             .on("mouseover", function(e, d) {
                 // show selection of arc
                 d3.select(this)
-                    .attr('stroke-width', 5)
+                    .attr('stroke-width', function(d) {
+                        if ((d[2] == USAvgGuess && myColor(d[0]) == 'red')) {
+                            return 0.5;
+                        } else {
+                            return 5;
+                        }
+                    })
                 // display info with tooltip
                 vis.tooltip
                     .style("opacity", 1)
@@ -180,7 +225,7 @@ class LineChart {
                     .style("top", e.pageY + "px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
-                             <h5>Year: ${d[0]}</h5></p>                         
+                             <h5>Demographic: ${d[0]}</h5></p>
                          </div>`);
             })
             .on('mouseout', function(e, d) {
@@ -199,11 +244,11 @@ class LineChart {
             .enter()
             .append("circle")
             .attr("cx", function (d) {
-                return vis.x(vis.percentileScale(d.FAMINCOME)); } )
+                return vis.x(Date.parse((d.MONTH))); } )
             .attr("cy", function (d) {
-                return vis.y(d.avgHours); } )
+                return vis.y(Number(d.PERCENT)/100.0); } )
             .attr("r", 1.5)
-            .style("fill", d=> myColor(d.YEAR))
+            .style("fill", d=> myColor(d.RACE))
 
             .on("mouseover", function(e, d) {
                 // show selection of arc
@@ -218,9 +263,9 @@ class LineChart {
                     .style("top", e.pageY + "px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 2px; background: white; padding: 5px">
-                             <h5>Year: ${d.YEAR}</h5>
-                             <h6> Income Percentile: ${Number(vis.percentileScale(d.FAMINCOME)).toFixed(0)} out of 100</h6>
-                             <h6> Average Hours Worked: ${Number(d.avgHours).toFixed(0)}</h6>                         
+                             <h5>${d.RACE}</h5>
+                             <h6> Month: ${(formatDate(Date.parse(d.MONTH)))}</h6>
+                             <h6> Percent Unemployed: ${Number(d.PERCENT).toFixed(1)}</h6>
                          </div>`);
             })
 
