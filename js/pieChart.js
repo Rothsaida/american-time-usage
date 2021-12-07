@@ -104,7 +104,7 @@ class PieChart {
 
         // Bind data
         vis.arcs = vis.pieChartGroup.selectAll(".arc")
-            .data(vis.pie(vis.displayData))
+            .data(vis.pie(vis.displayData)).
 
         // Append paths
         vis.arcs.enter()
@@ -143,6 +143,8 @@ class PieChart {
                     .style("top", 0)
                     .html(``);
             })
+
+
     }
 
     codeToActivity(code) {
